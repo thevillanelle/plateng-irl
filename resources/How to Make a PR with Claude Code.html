@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Make a PR with Claude Code</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, 'Inter', sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    background: white;
+    min-height: 100vh;
+    padding: 64px 72px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 6px;
+  }
+
+  .eyebrow-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  .sparkle { color: #1d1d1f; font-size: 18px; }
+
+  h1 {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 17px;
+    color: #6e6e73;
+    font-weight: 400;
+    margin-bottom: 40px;
+    max-width: 520px;
+  }
+
+  .what-is {
+    background: #f5f5f7;
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+  }
+
+  .what-is h2 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 10px;
+  }
+
+  .what-is p { font-size: 15px; color: #1d1d1f; line-height: 1.6; }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .feature-card {
+    background: #f5f5f7;
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+
+  .feature-card .label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 6px;
+  }
+
+  .feature-card p { font-size: 14px; color: #1d1d1f; line-height: 1.5; }
+
+  .steps-overview {
+    display: flex;
+    gap: 0;
+    margin-bottom: 48px;
+    border: 1px solid #e5e5ea;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .step-pill {
+    flex: 1;
+    text-align: center;
+    padding: 18px 12px;
+    border-right: 1px solid #e5e5ea;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1d1d1f;
+    line-height: 1.4;
+  }
+
+  .step-pill:last-child { border-right: none; }
+  .step-pill .num { display: block; font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+
+  .step-section { margin-bottom: 44px; }
+
+  .step-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e5ea;
+  }
+
+  .step-num { font-size: 28px; font-weight: 600; color: #1d1d1f; min-width: 28px; }
+  .step-title { font-size: 20px; font-weight: 600; color: #1d1d1f; }
+
+  .step-body p {
+    font-size: 15px;
+    color: #1d1d1f;
+    margin-bottom: 16px;
+    line-height: 1.65;
+  }
+
+  .step-body p:last-child { margin-bottom: 0; }
+
+  .instruction-block {
+    background: #f5f5f7;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+
+  .instruction-block ol { padding-left: 20px; margin: 0; }
+
+  .instruction-block li {
+    font-size: 14px;
+    color: #1d1d1f;
+    line-height: 1.65;
+    margin-bottom: 8px;
+  }
+
+  .instruction-block li:last-child { margin-bottom: 0; }
+
+  .instruction-block .block-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 12px;
+  }
+
+  /* Code/command style */
+  code {
+    background: #e8e8ed;
+    border-radius: 5px;
+    padding: 2px 7px;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 13px;
+    color: #1d1d1f;
+  }
+
+  .callout {
+    border-left: 3px solid #1d1d1f;
+    padding: 16px 20px;
+    margin: 20px 0;
+    background: #f5f5f7;
+    border-radius: 0 10px 10px 0;
+  }
+
+  .callout p { font-size: 14px; color: #1d1d1f; line-height: 1.6; margin: 0 !important; }
+
+  .good-pr {
+    background: #f5f5f7;
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-top: 40px;
+  }
+
+  .good-pr h2 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+  .good-pr .sub { font-size: 13px; color: #6e6e73; margin-bottom: 20px; }
+
+  .pr-example {
+    background: white;
+    border-radius: 10px;
+    padding: 20px 22px;
+    font-size: 13px;
+    line-height: 1.7;
+    border: 1px solid #e5e5ea;
+  }
+
+  .pr-example .pr-field {
+    font-weight: 600;
+    color: #6e6e73;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 14px;
+    margin-bottom: 4px;
+  }
+
+  .pr-example .pr-field:first-child { margin-top: 0; }
+  .pr-example .pr-value { color: #1d1d1f; }
+
+  .compliance-note {
+    margin-top: 40px;
+    padding: 22px 28px;
+    border: 1px solid #e5e5ea;
+    border-radius: 12px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .compliance-note .icon { font-size: 20px; margin-top: 2px; }
+  .compliance-note p { font-size: 14px; color: #1d1d1f; line-height: 1.6; margin: 0; }
+  .compliance-note strong { font-weight: 600; }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e5ea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer span { font-size: 12px; color: #6e6e73; letter-spacing: 0.04em; }
+
+  @media print {
+    body { background: white; }
+    .page { padding: 48px 56px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="eyebrow-row">
+    <span class="eyebrow">SDS Platform Engineering · GitHub Guides</span>
+    <span class="sparkle">✦</span>
+  </div>
+
+  <h1>How to make a pull request</h1>
+  <p class="subtitle">Using Claude Code in VS Code — no command line required. For contributors who are new to GitHub.</p>
+
+  <div class="what-is">
+    <h2>What is a pull request?</h2>
+    <p>A pull request (PR) is how you propose a change to a shared codebase or document. Instead of editing directly, you submit your changes for review — someone approves them, and then they're merged in. Every change is logged, with your name, a description, and a timestamp. That audit trail is what keeps SDS compliant with GESC requirements.</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="label">Why PRs matter here</div>
+      <p>GESC compliance requires a clear record of who changed what, when, and why. A well-written PR is that record.</p>
+    </div>
+    <div class="feature-card">
+      <div class="label">What Claude Code does</div>
+      <p>Claude Code lives inside VS Code. You describe your change in plain English and it makes the edit, creates the branch, and submits the PR — all from the chat panel.</p>
+    </div>
+  </div>
+
+  <div class="steps-overview">
+    <div class="step-pill"><span class="num">1</span>Open VS Code</div>
+    <div class="step-pill"><span class="num">2</span>Open Claude Code</div>
+    <div class="step-pill"><span class="num">3</span>Describe your change</div>
+    <div class="step-pill"><span class="num">4</span>Review the PR</div>
+    <div class="step-pill"><span class="num">5</span>Merge when approved</div>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="step-section">
+    <div class="step-header">
+      <span class="step-num">1</span>
+      <span class="step-title">Open VS Code in the right folder</span>
+    </div>
+    <div class="step-body">
+      <p>Open VS Code. Before using Claude Code, make sure you have the repo folder open — not just a single file.</p>
+      <div class="instruction-block">
+        <div class="block-label">Opening the repo</div>
+        <ol>
+          <li>In VS Code, go to <strong>File → Open Folder</strong></li>
+          <li>Navigate to your local copy of the repo and click <strong>Open</strong></li>
+          <li>If you don't have a local copy, ask your team lead to share the repo link and help you clone it first</li>
+        </ol>
+      </div>
+      <div class="callout">
+        <p>If the repo isn't on your computer yet, tell Claude Code: "Clone the repo at [paste GitHub URL] to my Desktop." It will handle it.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="step-section">
+    <div class="step-header">
+      <span class="step-num">2</span>
+      <span class="step-title">Open Claude Code</span>
+    </div>
+    <div class="step-body">
+      <p>Claude Code is a panel inside VS Code — you talk to it like a chat window and it acts on your repo.</p>
+      <div class="instruction-block">
+        <div class="block-label">Opening the panel</div>
+        <ol>
+          <li>Press <strong>⌘ ⇧ P</strong> to open the Command Palette</li>
+          <li>Type <strong>Claude</strong> and select <strong>Claude Code: Open</strong></li>
+          <li>The chat panel will appear on the right side of VS Code</li>
+        </ol>
+      </div>
+      <p>If you don't see Claude Code as an option, it may not be installed. Go to the Extensions panel (<strong>⌘ ⇧ X</strong>), search for <strong>Claude Code</strong>, and install it. Then complete the GenAI onboarding at <strong>genai.apple.com</strong> if you haven't already.</p>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="step-section">
+    <div class="step-header">
+      <span class="step-num">3</span>
+      <span class="step-title">Describe your change in plain language</span>
+    </div>
+    <div class="step-body">
+      <p>Type your request into the Claude Code chat panel. Be specific — include what file to change, what the change is, and why.</p>
+      <div class="instruction-block">
+        <div class="block-label">Example prompts</div>
+        <ol>
+          <li>"Create a new branch called <code>docs/add-gesc-section</code>, add a GESC screening section to README.md, then open a PR with a clear description."</li>
+          <li>"Update the timeout value in config.yaml from 30 to 60, create a branch, and open a PR explaining the reason."</li>
+          <li>"Add a new file called onboarding-checklist.md with the following content: [paste content]. Create a PR for it."</li>
+        </ol>
+      </div>
+      <p>Claude Code will show you each action it's taking — editing the file, creating the branch, staging the commit — before it opens the PR. You can stop it at any point.</p>
+    </div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="step-section">
+    <div class="step-header">
+      <span class="step-num">4</span>
+      <span class="step-title">Review and submit</span>
+    </div>
+    <div class="step-body">
+      <p>Claude Code will draft a PR title and description and show it to you before submitting. Read it carefully — this becomes part of the permanent audit record.</p>
+      <div class="instruction-block">
+        <div class="block-label">What to check</div>
+        <ol>
+          <li><strong>Title</strong> — should clearly describe what changed</li>
+          <li><strong>Description</strong> — should explain why the change is being made</li>
+          <li><strong>Files changed</strong> — should only include what you intended</li>
+          <li><strong>Branch name</strong> — should be descriptive, not <code>patch-1</code> or <code>fix</code></li>
+        </ol>
+      </div>
+      <p>If anything needs adjusting, just tell Claude Code what to change before it submits. Once you confirm, it will push the branch and open the PR on GitHub, sharing a direct link.</p>
+      <div class="callout">
+        <p>Add your reviewer's GitHub handle in the request: "Open a PR and request review from @[handle]." Claude Code will tag them automatically.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 5 -->
+  <div class="step-section">
+    <div class="step-header">
+      <span class="step-num">5</span>
+      <span class="step-title">Merge when approved</span>
+    </div>
+    <div class="step-body">
+      <p>Once your reviewer approves, you can merge. Claude Code can do this for you, or you can do it directly on GitHub.</p>
+      <div class="instruction-block">
+        <div class="block-label">Merging via Claude Code</div>
+        <ol>
+          <li>In the Claude Code panel, say: "Merge the PR at [paste GitHub link]"</li>
+          <li>Claude Code will confirm it's approved and merge it</li>
+        </ol>
+      </div>
+      <div class="instruction-block">
+        <div class="block-label">Merging directly on GitHub</div>
+        <ol>
+          <li>Open the PR link in your browser</li>
+          <li>Click the green <strong>Merge pull request</strong> button</li>
+          <li>Click <strong>Confirm merge</strong></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- Good PR example -->
+  <div class="good-pr">
+    <h2>What a good PR looks like</h2>
+    <p class="sub">Use this as a reference when Claude Code drafts your PR title and description.</p>
+    <div class="pr-example">
+      <div class="pr-field">Title</div>
+      <div class="pr-value">Add GESC screening requirement to onboarding runbook</div>
+
+      <div class="pr-field">Description</div>
+      <div class="pr-value">
+        Adds a new section to the onboarding runbook documenting the GESC sanctions screening step.<br><br>
+        <strong>Why:</strong> New hires were missing this step during setup. GESC compliance requires it be documented and followed for all new system access requests.<br><br>
+        <strong>What changed:</strong> onboarding-runbook.md — added "Sanctions Screening" section after Step 3.<br><br>
+        <strong>Reviewers:</strong> @[team-lead]
+      </div>
+    </div>
+  </div>
+
+  <!-- Compliance note -->
+  <div class="compliance-note">
+    <span class="icon">⚠</span>
+    <p><strong>A note on compliance.</strong> In SDS, PRs are part of our audit trail for GESC (Global Export &amp; Sanctions Compliance). Every change to a production system or compliance-related document should have a PR — never a direct commit. Your PR description is a record. Write it like someone will read it later to understand what happened and why.</p>
+  </div>
+
+  <footer>
+    <span>How to Make a PR with Claude Code · SDS Platform Engineering</span>
+    <span>For internal use only</span>
+  </footer>
+
+</div>
+</body>
+</html>

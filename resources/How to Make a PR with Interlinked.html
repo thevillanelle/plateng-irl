@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Make a PR with Interlinked</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, 'Inter', sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    background: white;
+    min-height: 100vh;
+    padding: 64px 72px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 6px;
+  }
+
+  .eyebrow-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  .sparkle { color: #1d1d1f; font-size: 18px; }
+
+  h1 {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 17px;
+    color: #6e6e73;
+    font-weight: 400;
+    margin-bottom: 40px;
+    max-width: 520px;
+  }
+
+  .what-is {
+    background: #f5f5f7;
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+  }
+
+  .what-is h2 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 10px;
+  }
+
+  .what-is p { font-size: 15px; color: #1d1d1f; line-height: 1.6; }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .feature-card {
+    background: #f5f5f7;
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+
+  .feature-card .label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 6px;
+  }
+
+  .feature-card p { font-size: 14px; color: #1d1d1f; line-height: 1.5; }
+
+  .steps-overview {
+    display: flex;
+    gap: 0;
+    margin-bottom: 48px;
+    border: 1px solid #e5e5ea;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .step-pill {
+    flex: 1;
+    text-align: center;
+    padding: 18px 12px;
+    border-right: 1px solid #e5e5ea;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1d1d1f;
+    line-height: 1.4;
+  }
+
+  .step-pill:last-child { border-right: none; }
+  .step-pill .num { display: block; font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+
+  .step-section { margin-bottom: 44px; }
+
+  .step-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e5ea;
+  }
+
+  .step-num { font-size: 28px; font-weight: 600; color: #1d1d1f; min-width: 28px; }
+  .step-title { font-size: 20px; font-weight: 600; color: #1d1d1f; }
+
+  .step-body p {
+    font-size: 15px;
+    color: #1d1d1f;
+    margin-bottom: 16px;
+    line-height: 1.65;
+  }
+
+  .step-body p:last-child { margin-bottom: 0; }
+
+  .instruction-block {
+    background: #f5f5f7;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+
+  .instruction-block ol { padding-left: 20px; margin: 0; }
+
+  .instruction-block li {
+    font-size: 14px;
+    color: #1d1d1f;
+    line-height: 1.65;
+    margin-bottom: 8px;
+  }
+
+  .instruction-block li:last-child { margin-bottom: 0; }
+
+  .instruction-block .block-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 12px;
+  }
+
+  code {
+    background: #e8e8ed;
+    border-radius: 5px;
+    padding: 2px 7px;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 13px;
+    color: #1d1d1f;
+  }
+
+  .callout {
+    border-left: 3px solid #1d1d1f;
+    padding: 16px 20px;
+    margin: 20px 0;
+    background: #f5f5f7;
+    border-radius: 0 10px 10px 0;
+  }
+
+  .callout p { font-size: 14px; color: #1d1d1f; line-height: 1.6; margin: 0 !important; }
+
+  .good-pr {
+    background: #f5f5f7;
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-top: 40px;
+  }
+
+  .good-pr h2 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+  .good-pr .sub { font-size: 13px; color: #6e6e73; margin-bottom: 20px; }
+
+  .pr-example {
+    background: white;
+    border-radius: 10px;
+    padding: 20px 22px;
+    font-size: 13px;
+    line-height: 1.7;
+    border: 1px solid #e5e5ea;
+  }
+
+  .pr-example .pr-field {
+    font-weight: 600;
+    color: #6e6e73;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 14px;
+    margin-bottom: 4px;
+  }
+
+  .pr-example .pr-field:first-child { margin-top: 0; }
+  .pr-example .pr-value { color: #1d1d1f; }
+
+  .compliance-note {
+    margin-top: 40px;
+    padding: 22px 28px;
+    border: 1px solid #e5e5ea;
+    border-radius: 12px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .compliance-note .icon { font-size: 20px; margin-top: 2px; }
+  .compliance-note p { font-size: 14px; color: #1d1d1f; line-height: 1.6; margin: 0; }
+  .compliance-note strong { font-weight: 600; }
+
+  /* Interlinked-specific: API context box */
+  .context-box {
+    border: 1px solid #e5e5ea;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+
+  .context-box .block-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 12px;
+  }
+
+  .context-box p { font-size: 14px; color: #1d1d1f; line-height: 1.6; margin: 0; }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e5ea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer span { font-size: 12px; color: #6e6e73; letter-spacing: 0.04em; }
+
+  @media print {
+    body { background: white; }
+    .page { padding: 48px 56px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="eyebrow-row">
+    <span class="eyebrow">SDS Platform Engineering · GitHub Guides</span>
+    <span class="sparkle">✦</span>
+  </div>
+
+  <h1>How to make a pull request</h1>
+  <p class="subtitle">Using Interlinked — for teams building AI-powered workflows that include GitHub actions.</p>
+
+  <div class="what-is">
+    <h2>What is a pull request?</h2>
+    <p>A pull request (PR) is how you propose a change to a shared codebase or document. Instead of editing directly, you submit your changes for review — someone approves them, and then they're merged in. Every change is logged, with your name, a description, and a timestamp. That audit trail is what keeps SDS compliant with GESC requirements.</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="label">Why PRs matter here</div>
+      <p>GESC compliance requires a clear record of who changed what, when, and why. A well-written PR is that record.</p>
+    </div>
+    <div class="feature-card">
+      <div class="label">What Interlinked does</div>
+      <p>Interlinked is Apple's internal developer library for building AI tools. If your team has an Interlinked-powered app or automation, it can be connected to GitHub to create and manage PRs programmatically.</p>
+    </div>
+  </div>
+
+  <div class="steps-overview">
+    <div class="step-pill"><span class="num">1</span>Access Interlinked</div>
+    <div class="step-pill"><span class="num">2</span>Connect GitHub</div>
+    <div class="step-pill"><span class="num">3</span>Describe your change</div>
+    <div class="step-pill"><span class="num">4</span>Review the PR</div>
+    <div class="step-pill"><span class="num">5</span>Merge when approved</div>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="step-section">
+    <div class="step-header">
+      <span class="step-num">1</span>
+      <span class="step-title">Access Interlinked via chat.apple.com</span>
+    </div>
+    <div class="step-body">
+      <p>Interlinked is accessible through <strong>chat.apple.com</strong> — Apple's internal AI chat interface. If your team has built a custom Interlinked-powered tool, your team lead will share the link or app directly.</p>
+      <div class="instruction-block">
+        <div class="block-label">Getting started</div>
+        <ol>
+          <li>Go to <strong>chat.apple.com</strong> in your browser (must be on Apple network or VPN)</li>
+          <li>Sign in with AppleConnect — no extra setup needed</li>
+          <li>Select your model and any Applets your team has configured</li>
+        </ol>
+      </div>
+      <div class="callout">
+        <p>If your team uses a custom Interlinked-powered tool instead of chat.apple.com directly, use that. The steps for describing and reviewing changes are the same.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="step-section">
+    <div class="step-header">
+      <span class="step-num">2</span>
+      <span class="step-title">Connect to GitHub</span>
+    </div>
+    <div class="step-body">
+      <p>For Interlinked to create PRs, the GitHub integration must be active. This is typically set up by your team's developer — check with them if you're unsure whether it's already configured.</p>
+      <div class="instruction-block">
+        <div class="block-label">If you're setting it up yourself</div>
+        <ol>
+          <li>In chat.apple.com, open the <strong>Applets</strong> panel</li>
+          <li>Find the <strong>GitHub</strong> applet and enable it</li>
+          <li>Authenticate with your GitHub credentials when prompted</li>
+          <li>Confirm the integration is active — you should see GitHub listed as a connected tool</li>
+        </ol>
+      </div>
+      <div class="context-box">
+        <div class="block-label">For developers building with Interlinked</div>
+        <p>Use the <code>interlinked</code> GitHub tool module to wire up repo access. Full documentation at <strong>istweb.apple.com/interlinked</strong>. Authenticate via OAuth using the user's AppleConnect identity — do not use shared service tokens for PRs that need individual attribution.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="step-section">
+    <div class="step-header">
+      <span class="step-num">3</span>
+      <span class="step-title">Describe your change in plain language</span>
+    </div>
+    <div class="step-body">
+      <p>In the chat interface, describe what you want to change — include the repo name, the file, and a clear reason for the change.</p>
+      <div class="instruction-block">
+        <div class="block-label">Example prompts</div>
+        <ol>
+          <li>"In the <strong>sds-compliance</strong> repo, update the GESC screening doc to reflect the new Q3 requirements. Here's the updated text: [paste text]. Create a branch and open a PR."</li>
+          <li>"Add me as a contributor to the CODEOWNERS file in <strong>platform-runbooks</strong>. Open a PR with a description explaining the change."</li>
+          <li>"Create a new branch in <strong>sds-docs</strong>, add the attached content as a new file called screening-policy.md, and submit a PR."</li>
+        </ol>
+      </div>
+      <p>Interlinked will show you what it plans to do before acting. You can ask it to adjust the branch name, PR title, description, or content before confirming.</p>
+    </div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="step-section">
+    <div class="step-header">
+      <span class="step-num">4</span>
+      <span class="step-title">Review before submitting</span>
+    </div>
+    <div class="step-body">
+      <p>Before the PR is created, Interlinked will present a summary of the change. Review it carefully — the PR description becomes a permanent compliance record.</p>
+      <div class="instruction-block">
+        <div class="block-label">What to check</div>
+        <ol>
+          <li><strong>PR title</strong> — specific and descriptive</li>
+          <li><strong>Description</strong> — includes what changed and why</li>
+          <li><strong>Files in scope</strong> — only what you intended</li>
+          <li><strong>Reviewer</strong> — tagged before submission</li>
+        </ol>
+      </div>
+      <p>Confirm when satisfied. Interlinked will push the branch and open the PR, returning a direct GitHub link.</p>
+      <div class="callout">
+        <p>If your team's Interlinked tool has a compliance template for PR descriptions, use it — it ensures the right fields are filled in for GESC audit purposes.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 5 -->
+  <div class="step-section">
+    <div class="step-header">
+      <span class="step-num">5</span>
+      <span class="step-title">Merge when approved</span>
+    </div>
+    <div class="step-body">
+      <p>Once your reviewer approves the PR, merge it via Interlinked or directly on GitHub.</p>
+      <div class="instruction-block">
+        <div class="block-label">Merging via Interlinked</div>
+        <ol>
+          <li>In the chat, say: "Merge the PR at [paste GitHub link]"</li>
+          <li>Interlinked will confirm approval status and merge</li>
+        </ol>
+      </div>
+      <div class="instruction-block">
+        <div class="block-label">Merging directly on GitHub</div>
+        <ol>
+          <li>Open the PR link in your browser</li>
+          <li>Click the green <strong>Merge pull request</strong> button</li>
+          <li>Click <strong>Confirm merge</strong></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- Good PR example -->
+  <div class="good-pr">
+    <h2>What a good PR looks like</h2>
+    <p class="sub">Use this as a reference when Interlinked drafts your PR title and description.</p>
+    <div class="pr-example">
+      <div class="pr-field">Title</div>
+      <div class="pr-value">Add GESC screening requirement to onboarding runbook</div>
+
+      <div class="pr-field">Description</div>
+      <div class="pr-value">
+        Adds a new section to the onboarding runbook documenting the GESC sanctions screening step.<br><br>
+        <strong>Why:</strong> New hires were missing this step during setup. GESC compliance requires it be documented and followed for all new system access requests.<br><br>
+        <strong>What changed:</strong> onboarding-runbook.md — added "Sanctions Screening" section after Step 3.<br><br>
+        <strong>Reviewers:</strong> @[team-lead]
+      </div>
+    </div>
+  </div>
+
+  <!-- Compliance note -->
+  <div class="compliance-note">
+    <span class="icon">⚠</span>
+    <p><strong>A note on compliance.</strong> In SDS, PRs are part of our audit trail for GESC (Global Export &amp; Sanctions Compliance). Every change to a production system or compliance-related document should have a PR — never a direct commit. Your PR description is a record. Write it like someone will read it later to understand what happened and why.</p>
+  </div>
+
+  <footer>
+    <span>How to Make a PR with Interlinked · SDS Platform Engineering</span>
+    <span>For internal use only</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Make a PR with Enchanté</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, 'Inter', sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    background: white;
+    min-height: 100vh;
+    padding: 64px 72px;
+  }
+
+  /* Header */
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 6px;
+  }
+
+  .eyebrow-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  .sparkle { color: #1d1d1f; font-size: 18px; }
+
+  h1 {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 17px;
+    color: #6e6e73;
+    font-weight: 400;
+    margin-bottom: 40px;
+    max-width: 520px;
+  }
+
+  /* What is section */
+  .what-is {
+    background: #f5f5f7;
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+  }
+
+  .what-is h2 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 10px;
+  }
+
+  .what-is p {
+    font-size: 15px;
+    color: #1d1d1f;
+    line-height: 1.6;
+  }
+
+  /* Feature grid */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .feature-card {
+    background: #f5f5f7;
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+
+  .feature-card .label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 6px;
+  }
+
+  .feature-card p {
+    font-size: 14px;
+    color: #1d1d1f;
+    line-height: 1.5;
+  }
+
+  /* Steps overview */
+  .steps-overview {
+    display: flex;
+    gap: 0;
+    margin-bottom: 48px;
+    border: 1px solid #e5e5ea;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .step-pill {
+    flex: 1;
+    text-align: center;
+    padding: 18px 12px;
+    border-right: 1px solid #e5e5ea;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1d1d1f;
+    line-height: 1.4;
+  }
+
+  .step-pill:last-child { border-right: none; }
+
+  .step-pill .num {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  /* Step sections */
+  .step-section {
+    margin-bottom: 44px;
+  }
+
+  .step-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e5ea;
+  }
+
+  .step-num {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1d1d1f;
+    min-width: 28px;
+  }
+
+  .step-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1d1d1f;
+  }
+
+  .step-body p {
+    font-size: 15px;
+    color: #1d1d1f;
+    margin-bottom: 16px;
+    line-height: 1.65;
+  }
+
+  .step-body p:last-child { margin-bottom: 0; }
+
+  .link-line {
+    font-size: 14px;
+    color: #6e6e73;
+    margin-bottom: 16px;
+  }
+
+  .link-line strong { color: #1d1d1f; }
+
+  /* Instruction blocks */
+  .instruction-block {
+    background: #f5f5f7;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+
+  .instruction-block ol {
+    padding-left: 20px;
+    margin: 0;
+  }
+
+  .instruction-block li {
+    font-size: 14px;
+    color: #1d1d1f;
+    line-height: 1.65;
+    margin-bottom: 8px;
+  }
+
+  .instruction-block li:last-child { margin-bottom: 0; }
+
+  .instruction-block .block-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 12px;
+  }
+
+  /* Callout */
+  .callout {
+    border-left: 3px solid #1d1d1f;
+    padding: 16px 20px;
+    margin: 20px 0;
+    background: #f5f5f7;
+    border-radius: 0 10px 10px 0;
+  }
+
+  .callout p {
+    font-size: 14px;
+    color: #1d1d1f;
+    line-height: 1.6;
+    margin: 0 !important;
+  }
+
+  /* Good PR box */
+  .good-pr {
+    background: #f5f5f7;
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-top: 40px;
+  }
+
+  .good-pr h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .good-pr .sub {
+    font-size: 13px;
+    color: #6e6e73;
+    margin-bottom: 20px;
+  }
+
+  .pr-example {
+    background: white;
+    border-radius: 10px;
+    padding: 20px 22px;
+    font-size: 13px;
+    line-height: 1.7;
+    border: 1px solid #e5e5ea;
+  }
+
+  .pr-example .pr-field {
+    font-weight: 600;
+    color: #6e6e73;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 14px;
+    margin-bottom: 4px;
+  }
+
+  .pr-example .pr-field:first-child { margin-top: 0; }
+
+  .pr-example .pr-value {
+    color: #1d1d1f;
+  }
+
+  /* Compliance note */
+  .compliance-note {
+    margin-top: 40px;
+    padding: 22px 28px;
+    border: 1px solid #e5e5ea;
+    border-radius: 12px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .compliance-note .icon { font-size: 20px; margin-top: 2px; }
+
+  .compliance-note p {
+    font-size: 14px;
+    color: #1d1d1f;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .compliance-note strong { font-weight: 600; }
+
+  /* Footer */
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e5ea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer span {
+    font-size: 12px;
+    color: #6e6e73;
+    letter-spacing: 0.04em;
+  }
+
+  @media print {
+    body { background: white; }
+    .page { padding: 48px 56px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="eyebrow-row">
+    <span class="eyebrow">SDS Platform Engineering · GitHub Guides</span>
+    <span class="sparkle">✦</span>
+  </div>
+
+  <h1>How to make a pull request</h1>
+  <p class="subtitle">Using Enchanté — no command line required. For contributors who are new to GitHub.</p>
+
+  <div class="what-is">
+    <h2>What is a pull request?</h2>
+    <p>A pull request (PR) is how you propose a change to a shared codebase or document. Instead of editing directly, you submit your changes for review — someone approves them, and then they're merged in. Every change is logged, with your name, a description, and a timestamp. That audit trail is what keeps SDS compliant with GESC requirements.</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="label">Why PRs matter here</div>
+      <p>GESC compliance requires a clear record of who changed what, when, and why. A well-written PR is that record.</p>
+    </div>
+    <div class="feature-card">
+      <div class="label">What Enchanté does</div>
+      <p>Enchanté can read your repo, understand the change you want to make, write the code or content, and submit the PR — in plain conversation.</p>
+    </div>
+  </div>
+
+  <div class="steps-overview">
+    <div class="step-pill"><span class="num">1</span>Open Enchanté</div>
+    <div class="step-pill"><span class="num">2</span>Describe your change</div>
+    <div class="step-pill"><span class="num">3</span>Review the PR</div>
+    <div class="step-pill"><span class="num">4</span>Submit for review</div>
+    <div class="step-pill"><span class="num">5</span>Merge when approved</div>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="step-section">
+    <div class="step-header">
+      <span class="step-num">1</span>
+      <span class="step-title">Open Enchanté and connect to GitHub</span>
+    </div>
+    <div class="step-body">
+      <p>Open Enchanté on your Mac. If you haven't installed it yet, download it from <strong>enchante.hwe.apple.com</strong> — it signs in automatically via AppleConnect.</p>
+      <div class="instruction-block">
+        <div class="block-label">Connect GitHub via L'Atelier</div>
+        <ol>
+          <li>Press <strong>⇧ ⌘ L</strong> to open L'Atelier (Enchanté's tool store)</li>
+          <li>Search for <strong>GitHub</strong> and click Install</li>
+          <li>Follow the prompts to authenticate with your GitHub account</li>
+          <li>Go to <strong>Settings → MCP</strong> and confirm GitHub shows a green status</li>
+        </ol>
+      </div>
+      <p>You only need to do this once. After that, Enchanté can read and write to any GitHub repo you have access to.</p>
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="step-section">
+    <div class="step-header">
+      <span class="step-num">2</span>
+      <span class="step-title">Describe your change in plain language</span>
+    </div>
+    <div class="step-body">
+      <p>Start a new conversation in Enchanté. Tell it what repo you're working in, what you want to change, and why. You don't need to know any code to do this.</p>
+      <div class="instruction-block">
+        <div class="block-label">Example prompts</div>
+        <ol>
+          <li>"In the <strong>sds-docs</strong> repo, update the README to add a section about our GESC screening process. Here's what it should say: [paste your text]"</li>
+          <li>"In <strong>platform-runbooks</strong>, add a new file called onboarding-checklist.md with the following content: [paste content]"</li>
+          <li>"Update line 14 of config.yaml in the <strong>sds-compliance</strong> repo — change the timeout value from 30 to 60."</li>
+        </ol>
+      </div>
+      <div class="callout">
+        <p>The more specific you are, the better. Include the repo name, the file (if you know it), and a clear description of the change. Enchanté will ask clarifying questions if it needs more context.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="step-section">
+    <div class="step-header">
+      <span class="step-num">3</span>
+      <span class="step-title">Review the PR before it's submitted</span>
+    </div>
+    <div class="step-body">
+      <p>Enchanté will show you exactly what it's going to change — the file name, the before and after, and the PR title and description it will use. Read it carefully before confirming.</p>
+      <div class="instruction-block">
+        <div class="block-label">What to check</div>
+        <ol>
+          <li><strong>PR title</strong> — should clearly say what changed (e.g., "Add GESC screening section to README")</li>
+          <li><strong>Description</strong> — should explain why the change is being made</li>
+          <li><strong>Files changed</strong> — confirm only the intended file(s) are included</li>
+          <li><strong>Content</strong> — read the actual change and make sure it's correct</li>
+        </ol>
+      </div>
+      <p>If anything looks wrong, just tell Enchanté what to fix before proceeding. Don't submit until you're satisfied.</p>
+    </div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="step-section">
+    <div class="step-header">
+      <span class="step-num">4</span>
+      <span class="step-title">Submit for review</span>
+    </div>
+    <div class="step-body">
+      <p>Once you confirm, Enchanté will create a new branch, commit the change, and open the PR on GitHub. It will share a link to the PR so you can see it.</p>
+      <div class="instruction-block">
+        <div class="block-label">After submitting</div>
+        <ol>
+          <li>Enchanté will give you a direct link to the PR on GitHub — click it to verify</li>
+          <li>Tag the right reviewer — ask your team lead who that is if you're unsure</li>
+          <li>Add a comment if there's any context the reviewer needs to know</li>
+        </ol>
+      </div>
+      <div class="callout">
+        <p>Never tag yourself as the reviewer on your own PR. PRs require a second set of eyes — that's the point.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 5 -->
+  <div class="step-section">
+    <div class="step-header">
+      <span class="step-num">5</span>
+      <span class="step-title">Merge when approved</span>
+    </div>
+    <div class="step-body">
+      <p>Once a reviewer approves the PR, you'll get a notification via GitHub (and email if you have it set up). You can then merge the PR.</p>
+      <div class="instruction-block">
+        <div class="block-label">Merging via Enchanté</div>
+        <ol>
+          <li>In Enchanté, say: "Merge the PR at [paste GitHub link]"</li>
+          <li>Enchanté will confirm the PR is approved and merge it</li>
+          <li>The branch will be deleted automatically if your repo is set up that way</li>
+        </ol>
+      </div>
+      <div class="instruction-block">
+        <div class="block-label">Merging directly on GitHub</div>
+        <ol>
+          <li>Open the PR link in your browser</li>
+          <li>Click the green <strong>Merge pull request</strong> button</li>
+          <li>Click <strong>Confirm merge</strong></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- Good PR example -->
+  <div class="good-pr">
+    <h2>What a good PR looks like</h2>
+    <p class="sub">Use this as a reference when Enchanté drafts your PR title and description.</p>
+    <div class="pr-example">
+      <div class="pr-field">Title</div>
+      <div class="pr-value">Add GESC screening requirement to onboarding runbook</div>
+
+      <div class="pr-field">Description</div>
+      <div class="pr-value">
+        Adds a new section to the onboarding runbook documenting the GESC sanctions screening step.<br><br>
+        <strong>Why:</strong> New hires were missing this step during setup. GESC compliance requires it be documented and followed for all new system access requests.<br><br>
+        <strong>What changed:</strong> onboarding-runbook.md — added "Sanctions Screening" section after Step 3.<br><br>
+        <strong>Reviewers:</strong> @[team-lead]
+      </div>
+    </div>
+  </div>
+
+  <!-- Compliance note -->
+  <div class="compliance-note">
+    <span class="icon">⚠</span>
+    <p><strong>A note on compliance.</strong> In SDS, PRs are part of our audit trail for GESC (Global Export &amp; Sanctions Compliance). Every change to a production system or compliance-related document should have a PR — never a direct commit. Your PR description is a record. Write it like someone will read it later to understand what happened and why.</p>
+  </div>
+
+  <footer>
+    <span>How to Make a PR with Enchanté · SDS Platform Engineering</span>
+    <span>For internal use only</span>
+  </footer>
+
+</div>
+</body>
+</html>
