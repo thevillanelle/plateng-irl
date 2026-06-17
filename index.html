@@ -885,6 +885,41 @@ body{
 [data-mode="apple"] .prog-label { color:#6e6e73 !important }
 [data-mode="apple"] .nav-badge { color:#0071e3 !important }
 
+/* ── DATA LAYER DECISION MATRIX ──────────────────── */
+.dm-step{margin-bottom:22px}
+.dm-step-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:rgba(0,0,0,.4);margin-bottom:8px}
+.dm-step-q{font-family:var(--serif);font-size:17px;font-weight:800;margin-bottom:12px;line-height:1.4}
+.dm-opts{display:flex;flex-direction:column;gap:8px}
+.dm-opt{padding:11px 15px;border:2px solid var(--border);background:var(--cream);cursor:pointer;font-size:14px;line-height:1.4;display:flex;align-items:center;gap:10px;transition:all .12s;-webkit-user-select:none;user-select:none}
+.dm-opt:hover{background:var(--yellow-light);border-color:var(--yellow)}
+.dm-opt.selected{background:var(--yellow);border-color:var(--border);font-weight:700}
+.dm-opt-key{width:24px;height:24px;flex-shrink:0;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;background:var(--white)}
+.dm-opt.selected .dm-opt-key{background:var(--black);color:var(--yellow)}
+.dm-progress-row{display:flex;gap:6px;margin-bottom:24px;align-items:center}
+.dm-pip{width:28px;height:6px;border:1.5px solid var(--border);background:var(--cream);transition:background .15s}
+.dm-pip.done{background:var(--yellow)}
+.dm-pip.active{background:var(--yellow-mid)}
+.dm-result-card{border:2.5px solid var(--border);box-shadow:var(--shadow-lg);background:var(--white);overflow:hidden;margin-top:4px}
+.dm-result-hdr{padding:18px 22px;border-bottom:2.5px solid var(--border);display:flex;align-items:center;gap:14px}
+.dm-result-db{font-family:var(--serif);font-size:26px;font-weight:900;line-height:1.1}
+.dm-result-tag{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;opacity:.6;margin-top:3px}
+.dm-result-body{padding:20px 22px;display:flex;flex-direction:column;gap:16px}
+.dm-section-hdr{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:rgba(0,0,0,.4);margin-bottom:6px}
+.dm-why-text{font-family:var(--serif);font-style:italic;font-size:14px;line-height:1.65}
+.dm-cost-box{border:2px solid var(--border);padding:12px 15px;background:var(--yellow-light)}
+.dm-rubric-box{border:2px solid var(--border);padding:12px 15px;background:var(--mint-light)}
+.dm-cost-text,.dm-rubric-text{font-size:13px;line-height:1.55}
+.dm-restart-btn{border:2.5px solid var(--border);background:var(--black);color:var(--yellow);font-family:var(--sans);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:10px 22px;cursor:pointer;box-shadow:var(--shadow-sm);transition:all .1s}
+.dm-restart-btn:hover{background:var(--yellow);color:var(--black)}
+.dm-nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.dm-next-btn{border:2.5px solid var(--border);background:var(--yellow);color:var(--black);font-family:var(--sans);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:10px 22px;cursor:pointer;box-shadow:var(--shadow-sm);transition:all .1s}
+.dm-next-btn:hover{background:var(--yellow-mid)}
+.dm-next-btn:disabled{opacity:.35;cursor:default}
+.dm-back-btn{border:2.5px solid var(--border);background:var(--cream);color:var(--black);font-family:var(--sans);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:8px 16px;cursor:pointer}
+.dm-back-btn:disabled{opacity:.25;cursor:default}
+.dm-badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.dm-badge{display:inline-block;font-size:10px;font-weight:800;padding:3px 9px;border:1.5px solid var(--border);text-transform:uppercase;letter-spacing:.06em}
+
 </style>
 </head>
 <body>
@@ -925,9 +960,9 @@ body{
       <div class="nav-group-label">Foundation &amp; Tools</div>
       <div class="nav-item" onclick="go('mod0')"><span>🖥️</span>0 · Dev Environment<span class="nav-badge">—</span></div>
       <div class="nav-item" onclick="go('mod1')"><span>💬</span>1 · Language Stack<span class="nav-badge">—</span></div>
-      <div class="nav-item" onclick="go('elective_github')"><span>🐙</span>GitHub for Teams<span class="nav-badge">—</span></div>
-      <div class="nav-item" onclick="go('elective_pr')"><span>📝</span>PR Hygiene<span class="nav-badge">—</span></div>
-      <div class="nav-item" onclick="go('elective_devworkflow')"><span>🔁</span>Dev Workflow<span class="nav-badge">—</span></div>
+      <div class="nav-item" onclick="go('elective_github')"><span>🐙</span>E1 · GitHub for Teams<span class="nav-badge">—</span></div>
+      <div class="nav-item" onclick="go('elective_pr')"><span>📝</span>E2 · PR Hygiene<span class="nav-badge">—</span></div>
+      <div class="nav-item" onclick="go('elective_devworkflow')"><span>🔁</span>E3 · Dev Workflow<span class="nav-badge">—</span></div>
       <div class="nav-group-label">Build</div>
       <div class="nav-item" onclick="go('mod2')"><span>🏗️</span>2 · Systems Design<span class="nav-badge">—</span></div>
       <div class="nav-item" onclick="go('mod3')"><span>🗃️</span>3 · Data Layer<span class="nav-badge">—</span></div>
@@ -937,24 +972,25 @@ body{
       <div class="nav-item" onclick="go('mod6')"><span>🔐</span>6 · Security<span class="nav-badge">—</span></div>
       <div class="nav-item" onclick="go('mod7')"><span>🧪</span>7 · Testing<span class="nav-badge">—</span></div>
       <div class="nav-item" onclick="go('mod8')"><span>⚙️</span>8 · CI/CD<span class="nav-badge">—</span></div>
-      <div class="nav-item" onclick="go('elective_deploy')"><span>🚀</span>Deployment<span class="nav-badge">—</span></div>
+      <div class="nav-item" onclick="go('elective_deploy')"><span>🚀</span>E4 · Deployment<span class="nav-badge">—</span></div>
       <div class="nav-group-label">Operate</div>
       <div class="nav-item" onclick="go('mod9')"><span>📡</span>9 · Observability<span class="nav-badge">—</span></div>
       <div class="nav-item" onclick="go('mod10')"><span>🚨</span>10 · Production Ops<span class="nav-badge">—</span></div>
-      <div class="nav-item" onclick="go('elective_multiproject')"><span>🗂️</span>Multiple Projects<span class="nav-badge">—</span></div>
+      <div class="nav-item" onclick="go('elective_multiproject')"><span>🗂️</span>E5 · Multiple Projects<span class="nav-badge">—</span></div>
       <div class="nav-item" onclick="go('mod11')"><span>📋</span>11 · Platform Standards<span class="nav-badge">—</span></div>
-      <div class="nav-item" onclick="go('elective_mcp')"><span>🤖</span>MCP &amp; Claude Skills<span class="nav-badge">—</span></div>
+      <div class="nav-item" onclick="go('elective_mcp')"><span>🤖</span>E6 · MCP &amp; Claude Skills<span class="nav-badge">—</span></div>
       <div class="nav-group-label">Electives</div>
-      <div class="nav-item" onclick="go('next_otel')"><span>📡</span>OTel in Python<span class="nav-badge">★</span></div>
-      <div class="nav-item" onclick="go('next_sql')"><span>🗃️</span>SQL Beyond Basics<span class="nav-badge">★</span></div>
-      <div class="nav-item" onclick="go('next_async')"><span>⚡</span>Python Async<span class="nav-badge">★</span></div>
-      <div class="nav-item" onclick="go('next_k8s')"><span>☸️</span>Kubernetes Basics<span class="nav-badge">★</span></div>
-      <div class="nav-item" onclick="go('next_athena')"><span>📊</span>The Data Stack<span class="nav-badge">★</span></div>
-      <div class="nav-item" onclick="go('next_innersource')"><span>🏆</span>InnerSource Your Repo<span class="nav-badge">★</span></div>
+      <div class="nav-item" onclick="go('next_otel')"><span>📡</span>E7 · OTel in Python<span class="nav-badge">★</span></div>
+      <div class="nav-item" onclick="go('next_sql')"><span>🗃️</span>E8 · SQL Beyond Basics<span class="nav-badge">★</span></div>
+      <div class="nav-item" onclick="go('next_async')"><span>⚡</span>E9 · Python Async<span class="nav-badge">★</span></div>
+      <div class="nav-item" onclick="go('next_k8s')"><span>☸️</span>E10 · Kubernetes Basics<span class="nav-badge">★</span></div>
+      <div class="nav-item" onclick="go('next_athena')"><span>📊</span>E11 · The Data Stack<span class="nav-badge">★</span></div>
+      <div class="nav-item" onclick="go('next_innersource')"><span>🏆</span>E12 · InnerSource Your Repo<span class="nav-badge">★</span></div>
       <div class="nav-group-label">Tools</div>
       <div class="nav-item" onclick="go('glossary')"><span>📖</span>Glossary</div>
       <div class="nav-item" onclick="go('rubric')"><span>💯</span>Report Card</div>
       <div class="nav-item" onclick="go('tool-agent')"><span>🤖</span>AI Study Agent<span class="nav-badge done">★</span></div>
+      <div class="nav-item" onclick="go('tool-data-matrix')"><span>🗃️</span>Data Layer Matrix<span class="nav-badge done">★</span></div>
     </div>
     <div class="sidebar-cher">"I was just totally clueless."<br>— Cher, who then figured it out anyway</div>
   </aside>
@@ -1417,11 +1453,10 @@ open ~/Desktop/grade-this-repo</pre><button class="copy-btn" onclick="copyText(t
       <div class="screen-panel" id="panel-elective_devworkflow">
         <div class="pad" style="background:var(--yellow-light)">
           <div class="module-hdr" style="background:var(--yellow)">
-            <div class="mod-num-badge" style="background:var(--yellow-light)">🔁</div>
+            <div class="mod-num-badge" style="background:var(--yellow-light)">E3</div>
             <div>
-              <div class="mod-hdr-label">Elective</div>
+              <div class="mod-hdr-label">E3 · Elective</div>
               <div class="mod-hdr-title">Developer Workflow</div>
-              <div class="mod-hdr-desc">The daily rhythm that keeps your code clean and your teammates sane.</div>
             </div>
           </div>
           <div class="lesson-host" data-mod="elective_devworkflow"></div>
@@ -1431,9 +1466,9 @@ open ~/Desktop/grade-this-repo</pre><button class="copy-btn" onclick="copyText(t
       <div class="screen-panel" id="panel-elective_multiproject">
         <div class="pad" style="background:#F4F0FF">
           <div class="module-hdr" style="background:#C9B3FF">
-            <div class="mod-num-badge" style="background:#F4F0FF">🗂️</div>
+            <div class="mod-num-badge" style="background:#F4F0FF">E5</div>
             <div>
-              <div class="mod-hdr-label">Elective</div>
+              <div class="mod-hdr-label">E5 · Elective</div>
               <div class="mod-hdr-title">Managing Multiple Projects</div>
               <div class="mod-hdr-desc">For engineers running multiple production systems across different teams.</div>
             </div>
@@ -1619,13 +1654,42 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       </div>
 
       <!-- ══ STUB PANELS for modules 3-8 ══ -->
-      
+
+      <!-- ══ TOOL: DATA LAYER DECISION MATRIX ══ -->
+      <div class="screen-panel" id="panel-tool-data-matrix">
+        <div class="pad" style="background:var(--yellow-light)">
+          <div class="module-hdr" style="background:var(--black)">
+            <div class="mod-num-badge" style="background:var(--yellow);font-size:20px">🗃️</div>
+            <div>
+              <div class="mod-hdr-label" style="color:rgba(245,197,24,.5)">Tools &middot; Module 3</div>
+              <div class="mod-hdr-title" style="color:var(--yellow)">Data Layer Decision Matrix</div>
+              <div class="mod-hdr-desc" style="color:rgba(255,255,255,.55)">Six questions. One honest recommendation. Client-side only — nothing leaves your browser.</div>
+            </div>
+          </div>
+          <div class="cher-says" style="background:var(--white)">
+            <p class="cher-says-text">&ldquo;Picking a database without this tool is like buying an outfit without checking the mirror. You might be fine. You might be a whole situation.&rdquo;</p>
+          </div>
+          <div class="tool-card" id="dm-card">
+            <div class="tool-card-hdr" style="background:var(--yellow)">
+              <div class="tool-card-icon">🗺️</div>
+              <div>
+                <div class="tool-card-title">What&rsquo;s your workload?</div>
+                <div class="tool-card-sub">Answer all six questions — Dionne will tell you exactly what to use and why</div>
+              </div>
+            </div>
+            <div class="tool-card-body" id="dm-body">
+              <!-- Rendered by initMatrix() -->
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="screen-panel" id="panel-elective_deploy">
         <div class="pad" style="background:var(--mint-light)">
           <div class="module-hdr" style="background:var(--mint)">
-            <div class="mod-num-badge" style="background:var(--mint-light)">🚀</div>
+            <div class="mod-num-badge" style="background:var(--mint)">E4</div>
             <div>
-              <div class="mod-hdr-label">Elective</div>
+              <div class="mod-hdr-label">E4 · Elective</div>
               <div class="mod-hdr-title">Deployment</div>
               <div class="mod-hdr-desc">Fly.io, Render.com, GitHub Pages, InnerSource.</div>
             </div>
@@ -1637,9 +1701,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-elective_mcp">
         <div class="pad" style="background:var(--lavender-light)">
           <div class="module-hdr" style="background:var(--lavender)">
-            <div class="mod-num-badge" style="background:var(--lavender-light)">🤖</div>
+            <div class="mod-num-badge" style="background:var(--lavender-light)">E6</div>
             <div>
-              <div class="mod-hdr-label">Elective</div>
+              <div class="mod-hdr-label">E6 · Elective</div>
               <div class="mod-hdr-title">MCP, Cron &amp; Claude Skills</div>
               <div class="mod-hdr-desc">Build and deploy AI tools on your infrastructure.</div>
             </div>
@@ -1651,9 +1715,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-elective_pr">
         <div class="pad" style="background:#F4F0FF">
           <div class="module-hdr" style="background:#C9B3FF">
-            <div class="mod-num-badge" style="background:#F4F0FF">📝</div>
+            <div class="mod-num-badge" style="background:#F4F0FF">E2</div>
             <div>
-              <div class="mod-hdr-label">Elective</div>
+              <div class="mod-hdr-label">E2 · Elective</div>
               <div class="mod-hdr-title">PR Hygiene &amp; Change Management</div>
               <div class="mod-hdr-desc">For everyone who touches a shared repo.</div>
             </div>
@@ -1665,9 +1729,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-elective_github">
         <div class="pad" style="background:#EEF4FF">
           <div class="module-hdr" style="background:#7AAAE8">
-            <div class="mod-num-badge" style="background:#EEF4FF">🐙</div>
+            <div class="mod-num-badge" style="background:#EEF4FF">E1</div>
             <div>
-              <div class="mod-hdr-label">Elective</div>
+              <div class="mod-hdr-label">E1 · Elective</div>
               <div class="mod-hdr-title">GitHub for Teams</div>
               <div class="mod-hdr-desc">Set up your team's GitHub org, protect your branches, manage your people.</div>
             </div>
@@ -1680,9 +1744,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-next_otel">
         <div class="pad" style="background:#EEF4FF">
           <div class="module-hdr" style="background:#7AAAE8">
-            <div class="mod-num-badge" style="background:#EEF4FF">📡</div>
+            <div class="mod-num-badge" style="background:#EEF4FF">E7</div>
             <div>
-              <div class="mod-hdr-label">What&rsquo;s Next</div>
+              <div class="mod-hdr-label">E7 · What&rsquo;s Next</div>
               <div class="mod-hdr-title">OpenTelemetry in Python</div>
               <div class="mod-hdr-desc">Instrument the Hub. See what it&rsquo;s actually doing.</div>
             </div>
@@ -1694,9 +1758,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-next_sql">
         <div class="pad" style="background:var(--mint-light)">
           <div class="module-hdr" style="background:var(--mint)">
-            <div class="mod-num-badge" style="background:var(--mint-light)">🗃️</div>
+            <div class="mod-num-badge" style="background:var(--mint-light)">E8</div>
             <div>
-              <div class="mod-hdr-label">What&rsquo;s Next</div>
+              <div class="mod-hdr-label">E8 · What&rsquo;s Next</div>
               <div class="mod-hdr-title">SQL Beyond Basics</div>
               <div class="mod-hdr-desc">Window functions, CTEs, and reading the query plan.</div>
             </div>
@@ -1708,9 +1772,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-next_async">
         <div class="pad" style="background:var(--pink-light)">
           <div class="module-hdr" style="background:var(--pink)">
-            <div class="mod-num-badge" style="background:var(--pink-light)">⚡</div>
+            <div class="mod-num-badge" style="background:var(--pink-light)">E9</div>
             <div>
-              <div class="mod-hdr-label">What&rsquo;s Next</div>
+              <div class="mod-hdr-label">E9 · What&rsquo;s Next</div>
               <div class="mod-hdr-title">Python Async Deep Dive</div>
               <div class="mod-hdr-desc">FastAPI is async. Your SQLite calls aren&rsquo;t. Fix that.</div>
             </div>
@@ -1722,9 +1786,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-next_k8s">
         <div class="pad" style="background:#F4F0FF">
           <div class="module-hdr" style="background:#C9B3FF">
-            <div class="mod-num-badge" style="background:#F4F0FF">☸️</div>
+            <div class="mod-num-badge" style="background:#F4F0FF">E10</div>
             <div>
-              <div class="mod-hdr-label">What&rsquo;s Next</div>
+              <div class="mod-hdr-label">E10 · What&rsquo;s Next</div>
               <div class="mod-hdr-title">Kubernetes Fundamentals</div>
               <div class="mod-hdr-desc">Fly.io runs on K8s. Know what&rsquo;s underneath.</div>
             </div>
@@ -1736,9 +1800,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-next_athena">
         <div class="pad" style="background:var(--yellow-light)">
           <div class="module-hdr" style="background:var(--yellow-mid)">
-            <div class="mod-num-badge" style="background:var(--yellow-light)">📊</div>
+            <div class="mod-num-badge" style="background:var(--yellow-light)">E11</div>
             <div>
-              <div class="mod-hdr-label">What&rsquo;s Next</div>
+              <div class="mod-hdr-label">E11 · What&rsquo;s Next</div>
               <div class="mod-hdr-title">The Data Stack</div>
               <div class="mod-hdr-desc">You build tools for your team. Know what your company actually runs.</div>
             </div>
@@ -1750,9 +1814,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-next_innersource">
         <div class="pad" style="background:var(--mint-light)">
           <div class="module-hdr" style="background:var(--mint)">
-            <div class="mod-num-badge" style="background:var(--mint-light)">🏆</div>
+            <div class="mod-num-badge" style="background:var(--mint-light)">E12</div>
             <div>
-              <div class="mod-hdr-label">What&rsquo;s Next</div>
+              <div class="mod-hdr-label">E12 · What&rsquo;s Next</div>
               <div class="mod-hdr-title">InnerSource Your Best Repo</div>
               <div class="mod-hdr-desc">CONTRIBUTING.md as if a stranger found it tomorrow.</div>
             </div>
@@ -1791,19 +1855,19 @@ const SCREENS = [
   {id:'glossary', title:'Glossary', prog:100},
   {id:'rubric', title:'Report Card', prog:100},
     {id:'tool-agent', title:'Tools · AI Study Agent', prog:100},
-,
-  {id:'elective_devworkflow', title:'Elective · Developer Workflow', prog:100},
-  {id:'elective_multiproject', title:'Elective · Managing Multiple Projects', prog:100},
-  {id:'elective_deploy', title:'Elective · Deployment', prog:100},
-  {id:'elective_mcp', title:'Elective · MCP & Claude Skills', prog:100},
-  {id:'elective_pr', title:'Elective · PR Hygiene & Change Management', prog:100},
-  {id:'elective_github', title:'Elective · GitHub for Teams', prog:100},
-  {id:'next_otel', title:"What's Next · OpenTelemetry in Python", prog:100},
-  {id:'next_sql', title:"What's Next · SQL Beyond Basics", prog:100},
-  {id:'next_async', title:"What's Next · Python Async Deep Dive", prog:100},
-  {id:'next_k8s', title:"What's Next · Kubernetes Fundamentals", prog:100},
-  {id:'next_athena', title:"What's Next · The Data Stack", prog:100},
-  {id:'next_innersource', title:"What's Next · InnerSource Your Best Repo", prog:100}
+    {id:'tool-data-matrix', title:'Tools · Data Layer Matrix', prog:100},
+  {id:'elective_devworkflow', title:'E3 · Developer Workflow', prog:100},
+  {id:'elective_multiproject', title:'E5 · Managing Multiple Projects', prog:100},
+  {id:'elective_deploy', title:'E4 · Deployment', prog:100},
+  {id:'elective_mcp', title:'E6 · MCP & Claude Skills', prog:100},
+  {id:'elective_pr', title:'E2 · PR Hygiene & Change Management', prog:100},
+  {id:'elective_github', title:'E1 · GitHub for Teams', prog:100},
+  {id:'next_otel', title:"E7 · OpenTelemetry in Python", prog:100},
+  {id:'next_sql', title:"E8 · SQL Beyond Basics", prog:100},
+  {id:'next_async', title:"E9 · Python Async Deep Dive", prog:100},
+  {id:'next_k8s', title:"E10 · Kubernetes Fundamentals", prog:100},
+  {id:'next_athena', title:"E11 · The Data Stack", prog:100},
+  {id:'next_innersource', title:"E12 · InnerSource Your Best Repo", prog:100}
 ]
 
 let current = 0;
@@ -2304,7 +2368,47 @@ function highlightRubricCards(s){document.querySelectorAll('.score-cell.active')
 function printGradingReport(){var h=window._lastReportHTML||'',fl=window._lastReportFiles||'';if(!h){alert('Run the grader first.');return;}var w=window.open('','_blank','width=900,height=700');w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Rubric Report</title><style>body{font-family:-apple-system,sans-serif;font-size:13px;padding:40px;max-width:800px;margin:0 auto}h1{font-size:22px;font-weight:900}.meta{font-size:11px;color:#6e6e73;margin-bottom:24px}.grade-result{border:2px solid #1a1008}.grade-result-hdr{display:flex;justify-content:space-between;padding:10px 14px;background:#fffdf8;border-bottom:2px solid #1a1008;font-weight:800;font-size:12px}.grade-dim{display:flex;gap:12px;padding:10px 14px;border-bottom:1px solid rgba(0,0,0,.1)}.grade-dim-score{font-size:22px;font-weight:900;min-width:28px}.grade-dim-name{font-weight:800;font-size:12px;margin-bottom:4px}.grade-dim-evidence{font-size:11px}.grade-evidence-item{display:flex;gap:6px}.check-pass{color:#1a8f3c;font-weight:800}.check-fail{color:#c0392b;font-weight:800}.grade-total-bar{display:flex;gap:16px;padding:14px;background:#fffdf8;border-top:2px solid #1a1008}.grade-total-num{font-size:32px;font-weight:900}.grade-total-track{height:12px;background:#eee;border:1px solid #ccc;flex:1;margin-top:6px}.grade-total-fill{height:100%;background:#F5C518}@media print{button{display:none}}</style></head><body>');w.document.write('<h1>Platform Engineering Rubric</h1><div class="meta">Files: '+fl+' &middot; '+new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+' &middot; Analyzed in browser</div>');w.document.write(h);w.document.write('<br><button onclick="window.print()" style="padding:8px 20px;background:#1a1008;color:#F5C518;border:none;font-weight:800;font-size:12px;cursor:pointer">Print / Save as PDF</button></body></html>');w.document.close();w.onload=function(){w.print()};}
 
 /* ════════════ GLOSSARY LAYER ════════════ */
-const GLOSSARY = {"Okta": "your SSO's identity system. SSO for most internal services, and the source of the user ID your apps read from request headers.", "LDAP": "Your directory service for group membership and credentials. Works alongside your SSO.", "RBAC group": "An RBAC group. The actual permission mechanism: membership controls access to data systems, CI/CD pipelines, Slack channels, and tools.", "RBAC groups": "RBAC groups. The actual permission mechanism: membership controls access to data systems, CI/CD pipelines, Slack channels, and tools.", "user_id": "Directory Services ID. The stable numeric identity Okta attaches to each request; get_user_id() reads it in your FastAPI backend.", "Athena": "your data platform for analytics workflows. Requires your VPN to reach.", "Snowflake": "Cloud data warehouse used at your company for analytics-scale queries.", "Arcadia": "your data exploration environment, hosting Superset and Jupyter.", "Superset": "An open-source data exploration and dashboarding tool available through Arcadia.", "Jupyter": "Interactive Python notebooks, available through Arcadia for analysis and modeling.", "Docker Desktop": "Docker Desktop replacement. Same commands; used because Docker Desktop isn't licensed for production at your company.", "Docker": "The container technology and image format. Still used everywhere at your company — you write Dockerfiles and push to ghcr.io. Only Docker DESKTOP (the licensed GUI app) is replaced, by Docker Desktop.", "Docker Desktop": "The paid GUI app and bundled engine from Docker Inc. Not licensed at your company. Docker Desktop replaces it and runs the same Dockerfiles and commands.", "ghcr.io": "GitHub’s container registry, built for push/pull workflows Container Registry. You push your built images here for Fly.io to deploy.", "Fly.io": "your container deployment platform where your apps run. Built on Kubernetes.", "GitHub Container Registry": "GitHub's container image registry (ghcr.io).", "your network layer": "The network ACL layer that controls inbound and outbound traffic for your deployments.", "Doppler": "Fly.io's secret-injection system. Injects credentials as environment variables at container start, so they never touch your repo.", "Narrative": "A service that issues identity certificates so one service can prove its identity to another.", "Cosign": "The image-signing requirement for Fly.io. Images must be signed before they can be deployed.", "Rio": "your managed CI/CD platform, with tighter deployment integration than GitHub Actions.", "Datadog": "The observability integration on Fly.io. Auto-collects CPU, memory, error rate, and latency.", "Splunk": "A log-aggregation and search platform for your observability stack.", "OpenTelemetry": "The open, vendor-neutral standard for telemetry (logs, metrics, traces). the community contributes to it.", "Cloudflare WAF": "your Web Application Firewall and security scanner. Required when an app is reachable from outside the your network.", "stateless": "A component that can be killed and restarted with no data loss, like your FastAPI process.", "stateful": "A component that holds data which must survive restarts, like your SQLite file or database.", "idempotent": "Safe to run many times with the same result as running once. CREATE TABLE IF NOT EXISTS is idempotent; a plain INSERT is not.", "separation of concerns": "Each layer does one job and doesn't reach into another's internals, so you can change one without breaking the others.", "coupling": "How dependent two components are on each other's internals. Loose coupling is the goal.", "migration": "Code that transforms your database schema from one version to the next without losing existing data.", "schema": "The shape of your data: tables, columns, types, and keys. The contract everything else depends on.", "regression": "When a change quietly breaks something that used to work. Tests catch regressions before users do.", "unit test": "A test of one function in isolation, with no database or network. Fast enough to run on every save.", "integration test": "A test that exercises two or more components together, like an API endpoint hitting a real test database.", "end-to-end test": "A test that drives the whole system from the user's perspective, clicking through the real UI.", "CI": "Continuous Integration. Every push runs your tests automatically, so breakage is caught early.", "CD": "Continuous Deployment. On merge, the system builds, pushes, and deploys without manual steps.", "RBAC": "Role-Based Access Control. Permissions are granted by role rather than to individuals one by one.", "InnerSource": "the practice of open-source methods inside the company: open code, community, and earned authority.", "your platform": "The platform requirements your container must satisfy to deploy: non-root user, port 8080, Cosign signing, health check.", "uvicorn": "The ASGI server that runs your FastAPI app inside the container.", "nginx": "The web server that fronts your app, serving static files and proxying API calls to uvicorn.", "FastAPI": "The Python web framework your backends are built on.", "SQLite": "A lightweight file-based database. Correct for single-replica apps; switch to PostgreSQL when you scale out.", "PostgreSQL": "A full client-server relational database. The move when SQLite's single-file model stops fitting.", "p99 latency": "The response time below which 99% of requests fall. A standard tail-latency health metric.", "rollback": "Returning a deployment to a previous known-good image tag, usually in under two minutes.", "health check": "An endpoint Fly.io polls to decide if a replica is healthy enough to receive traffic.", "your VPN": "The VPN required to reach certain internal data systems such as Athena.", "API": "Application Programming Interface. Any contract between two components: the shape of a function call, an HTTP endpoint, or the columns a table exposes. A good API hides its implementation.", "REST": "Representational State Transfer. Resources have URLs, verbs are HTTP methods (GET/POST/PATCH/DELETE). Your FastAPI app is a REST API.", "API contract": "The promise an API makes to callers: the URL, request shape, and response shape. Breaking it breaks every caller. Extend safely by adding optional fields.", "API versioning": "Releasing a new version (/v2/) while keeping the old one running so existing callers don't break.", "cohesion": "How closely related the responsibilities inside a single component are. High cohesion means it does one thing well.", "cache hit": "The requested data was in cache and returned instantly, without querying the source.", "cache miss": "The requested data was not in cache; the source was queried and the result stored for next time.", "TTL": "Time to Live. How long a cached value is considered fresh before it must be re-fetched.", "cache invalidation": "Deciding when to discard a cached value before its TTL expires because the underlying data changed. Infamously hard.", "I/O bound": "A task that spends most of its time waiting for disk, network, or a database — not computing. Async shines here.", "CPU bound": "A task that spends most of its time computing, not waiting for I/O. Async does not help; the CPU is the bottleneck.", "CAP theorem": "In a distributed system, you must choose: stay Consistent (all nodes return the same data) or stay Available (always respond, possibly stale) when the network fails.", "eventual consistency": "A guarantee that, given no new writes, all replicas will eventually converge to the same value. Acceptable for feeds and caches; not for financial data.", "horizontal scaling": "Running N identical copies of a stateless service behind a load balancer. When load doubles, add replicas.", "vertical scaling": "Giving your existing container more CPU and RAM. Simple, but has a ceiling.", "load balancer": "Routes incoming requests across your running replicas. Fly.io provides this; you design your app to work with it.", "replica": "One running copy of your container. Fly.io runs 2 by default. If one crashes, the other keeps serving while a replacement starts.", "normalization": "Eliminating repetition in your data by organizing tables so each fact is stored once. 1NF, 2NF, and 3NF define the levels.", "denormalization": "Deliberately storing redundant data to improve read performance. A trade-off: faster reads, harder updates.", "B-tree index": "The default index type in SQLite and PostgreSQL. A balanced tree where lookups take O(log n) instead of O(n). Excellent for equality checks and range queries.", "composite index": "An index covering multiple columns in a specific order: CREATE INDEX ON saved(user_id, type). The order matters for query matching.", "full table scan": "The database reads every row to find matches. Fast for small tables; increasingly slow as rows grow. An index prevents this.", "ACID": "Atomic, Consistent, Isolated, Durable. The four guarantees a database transaction provides. Atomic: all operations succeed or all fail.", "atomicity": "A transaction either commits completely or rolls back completely — no partial writes. The most important of the ACID properties.", "transaction": "A group of database operations that succeed or fail together. Wrap them with 'with conn:' in Python sqlite3.", "semantic color": "Color assigned meaning, not just appearance. Green = success, red = error, yellow = warning. Consistent use builds user trust.", "contrast ratio": "A measure of how distinguishable text is from its background. WCAG AA requires 4.5:1 for normal text.", "WCAG": "Web Content Accessibility Guidelines. The international standard for web accessibility. AA level is the baseline: 4.5:1 contrast, keyboard navigability, text alternatives.", "affordance": "A visual cue that signals how something can be interacted with. A raised button affords clicking. Missing affordances make users guess.", "loading state": "The visual indicator that work is in progress. Required any time an operation takes more than ~100ms.", "error state": "The designed response to failure. Not just 'something went wrong' — a specific message that tells the user what failed and what to do next.", "spacing scale": "A predefined set of spacing values (multiples of 4 or 8) that every margin, padding, and gap should come from. The invisible grid that makes interfaces feel considered.", "usability testing": "Observing real users attempt tasks with your interface. You watch; you don't help. Their struggle is the data.", "think-aloud protocol": "Asking participants to narrate their thoughts as they work. Reveals mental models and decision points you can't observe from clicks alone.", "heuristic evaluation": "A structured expert review of an interface against a checklist of known usability principles (Nielsen's 10 heuristics). No users needed.", "A/B testing": "Showing two versions of an interface to different users simultaneously and measuring which performs better on a defined metric. Requires enough traffic for statistical significance.", "statistical significance": "Confidence that an observed A/B difference is real, not random. Typically p < 0.05. Requires a minimum sample size calculated before running.", "card sorting": "Participants group topics into categories that make sense to them, revealing their mental model for navigation and information architecture.", "task completion rate": "The percentage of usability test participants who successfully completed a given task. A direct measure of interface usability.", "STRIDE": "A threat classification framework: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege.", "attack surface": "The total set of entry points an attacker could use: every HTTP endpoint, every form input, every env var read from the OS.", "trust boundary": "The line between parts of a system that run with different privilege levels. Data crossing a trust boundary must always be validated.", "injection": "Sending malicious data to an interpreter (SQL, shell, LDAP). Prevented by parameterized queries and never interpolating user input into commands.", "XSS": "Cross-Site Scripting. Injecting malicious JavaScript into a page that runs in another user's browser. Prevented by escaping user-supplied content before rendering as HTML.", "OWASP": "Open Web Application Security Project. Publishes the Top 10 most critical web security risks, updated from real-world breach data.", "output encoding": "Escaping data before rendering it in a context where it could be interpreted as code. For HTML: replace < with &lt;. For SQL: use parameterized queries.", "least privilege": "Every component should have only the permissions it needs and no more.", "threat modeling": "Systematically asking what could go wrong, who would cause it, and what the attack paths are. STRIDE is one framework.", "TDD": "Test-Driven Development. Write the test first (red), then write minimum code to pass it (green), then clean up (refactor).", "red/green/refactor": "The TDD cycle. Red: failing test. Green: minimum code to pass. Refactor: clean up while keeping tests passing.", "test double": "An object that stands in for a real dependency in tests. Includes stubs, mocks, and fakes.", "stub": "A test double that returns a fixed response. Controls what a dependency returns; does not verify it was called.", "mock": "A test double that also verifies it was called in a specific way. Use when the interaction itself is what you're testing.", "fake": "A working but simpler implementation of a dependency. An in-memory SQLite database is a fake. More realistic than a stub.", "over-mocking": "Mocking so many things that the test no longer tests real behavior. A test that passes even when the real code is broken.", "line coverage": "The percentage of code lines executed by at least one test. A floor, not a ceiling — execution doesn't mean correct behavior.", "branch coverage": "Stricter than line coverage. Measures whether both the True and False branches of every conditional were tested.", "flaky test": "A test that passes sometimes and fails sometimes without any code change. Erodes trust in the entire test suite.", "dependency override": "FastAPI's mechanism for replacing a real dependency with a test version in integration tests. app.dependency_overrides[get_db] = lambda: test_db.", "pipeline": "A directed graph of jobs that runs automatically on code changes. Each job has steps; jobs can depend on each other.", "artifact": "A file produced by one CI job and consumed by another. In GitHub Actions: uploaded/downloaded with actions/upload-artifact.", "rolling deployment": "Replacing old replicas with new ones gradually. Fly.io's default. Both versions run simultaneously during the transition.", "blue-green deployment": "Running two identical environments (blue = current, green = new). Switch traffic to green when verified; rollback is instant.", "canary deployment": "Sending a small percentage of traffic to the new version, monitoring for errors, then gradually increasing.", "feature flag": "A code-level switch that enables or disables a feature at runtime without a deployment. Decouples deployment from release.", "staging environment": "A production-like environment for testing before real users see changes. Must mirror production config and data shape.", "image tag": "A label on a Docker image. Use the git SHA for immutable, traceable production deployments. Never deploy with 'latest'.", "container registry": "A server that stores Docker images. At your company: ghcr.io (GitHub Container Registry). CI builds and pushes; Fly.io pulls and deploys.", "broken main": "The state where the main branch is failing CI. Blocks the whole team. Treat as P1 — fix before any other work.", "SLO": "Service Level Objective. A target value for a reliability metric over a time window. '99% of requests respond in under 300ms, measured over 30 days.'", "SLI": "Service Level Indicator. The actual measurement your SLO is set against. Ratio of good events to total events.", "error budget": "The amount of unreliability your SLO allows. If your SLO is 99.5%, your budget is 0.5%. When it's gone, slow down changes.", "alert fatigue": "The state where engineers stop responding to alerts because there are too many false positives. A noisy alert is worse than no alert.", "symptom-based alerting": "Alerting on what users experience (high error rate, slow responses) rather than internal system state (CPU at 70%).", "trace": "A record of the end-to-end journey of a single request, composed of spans. Has a unique trace ID propagated across all services.", "span": "One unit of work within a trace: a single function call, DB query, or HTTP request. Has a start time, duration, and status.", "golden signals": "Google SRE's four key metrics: Latency, Traffic, Errors, Saturation. The minimum viable alert set for any service.", "USE method": "A dashboard framework: Utilization, Saturation, Errors — one row per resource.", "RED method": "A service dashboard framework: Rate, Errors, Duration — the three panels that tell you if a service is healthy.", "incident": "An unplanned event that degrades or disrupts a service for users. Defined by user impact, not alert count.", "postmortem": "A structured written review of what happened, why, and what will change. Blameless: fix the system, not the person.", "incident commander": "The person coordinating the response — keeping track of what's being tried and communicating status to stakeholders.", "toil": "Repetitive, manual operational work that scales with the service but produces no lasting improvement. Keep below 50% of ops time.", "N+1 query": "Loading N items with N+1 database queries: one for the list, then one per item. Fix with a JOIN or single bulk query.", "profiling": "Instrumenting a program to measure how much time and memory each function uses. Never optimize without profiling first.", "headroom": "The gap between current resource utilization and the limit. Below 20%: plan an upgrade. Below 10%: act now.", "ADR": "Architecture Decision Record. A short document recording a significant decision: what was decided, why, and what alternatives were rejected.", "SemVer": "Semantic Versioning. MAJOR.MINOR.PATCH. MAJOR: breaking change. MINOR: new backwards-compatible feature. PATCH: bug fix.", "deprecation": "An explicit signal that a feature will be removed in a future version. Requires: what's deprecated, when it's removed, what to use instead.", "sunset period": "The window between deprecation announcement and removal. Long enough for consumers to migrate; short enough that it doesn't become permanent.", "bikeshedding": "Spending disproportionate review time on trivial, subjective details while giving less attention to logic, correctness, and security.", "CODEOWNERS": "A file (.github/CODEOWNERS) that assigns ownership of files to users or teams. GitHub auto-requests review from owners when their files change.", "blameless": "A postmortem culture where the goal is to improve the system, not assign fault. 'What allowed this to happen?' not 'who caused this?'", "pull request": "A proposal to change a shared codebase. Creates a reviewable diff, requires approval, and produces a permanent audit record.", "branch protection": "GitHub repo settings that block direct commits to main, require reviews before merge, and optionally require CI to pass.", "audit trail": "A chronological record of who changed what in a system and why. In GitHub, the PR history is part of the audit trail.", "your compliance framework": "your compliance framework. your program ensuring products and data don't violate U.S. and international export control laws.", "coroutine": "A function defined with 'async def'. Does not run when called — returns a coroutine object. The event loop runs it when you await it.", "event loop": "Python's asyncio event loop. Switches between coroutines when they yield control (await), so I/O wait time isn't wasted.", "Pod": "The smallest deployable unit in Kubernetes. Contains one or more containers that share a network namespace. Fly.io creates Pods for each replica.", "liveness probe": "Kubernetes calls this endpoint periodically. Failures trigger a container restart. Your /health endpoint serves as the liveness probe.", "readiness probe": "Kubernetes calls this during startup. Until it passes, the Pod receives no traffic. Ensures your app is fully initialized before serving.", "OOM": "Out of Memory. When a container exceeds its memory limit, the kernel kills the process (OOM kill) and Kubernetes restarts the Pod.", "window function": "A SQL function that computes across a set of rows without collapsing them. ROW_NUMBER(), RANK(), and running totals are window functions.", "CTE": "Common Table Expression. A named subquery defined with WITH that makes complex SQL readable by building it in named steps."};
+const GLOSSARY = {"Okta": "your SSO's identity system. SSO for most internal services, and the source of the user ID your apps read from request headers.", "LDAP": "Your directory service for group membership and credentials. Works alongside your SSO.", "RBAC group": "An RBAC group. The actual permission mechanism: membership controls access to data systems, CI/CD pipelines, Slack channels, and tools.", "RBAC groups": "RBAC groups. The actual permission mechanism: membership controls access to data systems, CI/CD pipelines, Slack channels, and tools.", "user_id": "Directory Services ID. The stable numeric identity Okta attaches to each request; get_user_id() reads it in your FastAPI backend.", "Athena": "your data platform for analytics workflows. Requires your VPN to reach.", "Snowflake": "Cloud data warehouse used at your company for analytics-scale queries.", "Arcadia": "your data exploration environment, hosting Superset and Jupyter.", "Superset": "An open-source data exploration and dashboarding tool available through Arcadia.", "Jupyter": "Interactive Python notebooks, available through Arcadia for analysis and modeling.", "Docker Desktop": "Docker Desktop replacement. Same commands; used because Docker Desktop isn't licensed for production at your company.", "Docker": "The container technology and image format. Still used everywhere at your company — you write Dockerfiles and push to ghcr.io. Only Docker DESKTOP (the licensed GUI app) is replaced, by Docker Desktop.", "Docker Desktop": "The paid GUI app and bundled engine from Docker Inc. Not licensed at your company. Docker Desktop replaces it and runs the same Dockerfiles and commands.", "ghcr.io": "GitHub’s container registry, built for push/pull workflows Container Registry. You push your built images here for Fly.io to deploy.", "Fly.io": "your container deployment platform where your apps run. Built on Kubernetes.", "GitHub Container Registry": "GitHub's container image registry (ghcr.io).", "your network layer": "The network ACL layer that controls inbound and outbound traffic for your deployments.", "Doppler": "Fly.io's secret-injection system. Injects credentials as environment variables at container start, so they never touch your repo.", "Narrative": "A service that issues identity certificates so one service can prove its identity to another.", "Cosign": "The image-signing requirement for Fly.io. Images must be signed before they can be deployed.", "Rio": "your managed CI/CD platform, with tighter deployment integration than GitHub Actions.", "Datadog": "The observability integration on Fly.io. Auto-collects CPU, memory, error rate, and latency.", "Splunk": "A log-aggregation and search platform for your observability stack.", "OpenTelemetry": "The open, vendor-neutral standard for telemetry (logs, metrics, traces). the community contributes to it.", "Cloudflare WAF": "your Web Application Firewall and security scanner. Required when an app is reachable from outside the your network.", "stateless": "A component that can be killed and restarted with no data loss, like your FastAPI process.", "stateful": "A component that holds data which must survive restarts, like your SQLite file or database.", "idempotent": "Safe to run many times with the same result as running once. CREATE TABLE IF NOT EXISTS is idempotent; a plain INSERT is not.", "separation of concerns": "Each layer does one job and doesn't reach into another's internals, so you can change one without breaking the others.", "coupling": "How dependent two components are on each other's internals. Loose coupling is the goal.", "migration": "Code that transforms your database schema from one version to the next without losing existing data.", "schema": "The shape of your data: tables, columns, types, and keys. The contract everything else depends on.", "regression": "When a change quietly breaks something that used to work. Tests catch regressions before users do.", "unit test": "A test of one function in isolation, with no database or network. Fast enough to run on every save.", "integration test": "A test that exercises two or more components together, like an API endpoint hitting a real test database.", "end-to-end test": "A test that drives the whole system from the user's perspective, clicking through the real UI.", "CI": "Continuous Integration. Every push runs your tests automatically, so breakage is caught early.", "CD": "Continuous Deployment. On merge, the system builds, pushes, and deploys without manual steps.", "RBAC": "Role-Based Access Control. Permissions are granted by role rather than to individuals one by one.", "InnerSource": "the practice of open-source methods inside the company: open code, community, and earned authority.", "your platform": "The platform requirements your container must satisfy to deploy: non-root user, port 8080, Cosign signing, health check.", "uvicorn": "The ASGI server that runs your FastAPI app inside the container.", "nginx": "The web server that fronts your app, serving static files and proxying API calls to uvicorn.", "FastAPI": "The Python web framework your backends are built on.", "SQLite": "A lightweight file-based database. Correct for single-replica apps; switch to PostgreSQL when you scale out.", "PostgreSQL": "A full client-server relational database. The move when SQLite's single-file model stops fitting.", "p99 latency": "The response time below which 99% of requests fall. A standard tail-latency health metric.", "rollback": "Returning a deployment to a previous known-good image tag, usually in under two minutes.", "health check": "An endpoint Fly.io polls to decide if a replica is healthy enough to receive traffic.", "your VPN": "The VPN required to reach certain internal data systems such as Athena.", "API": "Application Programming Interface. Any contract between two components: the shape of a function call, an HTTP endpoint, or the columns a table exposes. A good API hides its implementation.", "REST": "Representational State Transfer. Resources have URLs, verbs are HTTP methods (GET/POST/PATCH/DELETE). Your FastAPI app is a REST API.", "API contract": "The promise an API makes to callers: the URL, request shape, and response shape. Breaking it breaks every caller. Extend safely by adding optional fields.", "API versioning": "Releasing a new version (/v2/) while keeping the old one running so existing callers don't break.", "cohesion": "How closely related the responsibilities inside a single component are. High cohesion means it does one thing well.", "cache hit": "The requested data was in cache and returned instantly, without querying the source.", "cache miss": "The requested data was not in cache; the source was queried and the result stored for next time.", "TTL": "Time to Live. How long a cached value is considered fresh before it must be re-fetched.", "cache invalidation": "Deciding when to discard a cached value before its TTL expires because the underlying data changed. Infamously hard.", "I/O bound": "A task that spends most of its time waiting for disk, network, or a database — not computing. Async shines here.", "CPU bound": "A task that spends most of its time computing, not waiting for I/O. Async does not help; the CPU is the bottleneck.", "CAP theorem": "In a distributed system, you must choose: stay Consistent (all nodes return the same data) or stay Available (always respond, possibly stale) when the network fails.", "eventual consistency": "A guarantee that, given no new writes, all replicas will eventually converge to the same value. Acceptable for feeds and caches; not for financial data.", "horizontal scaling": "Running N identical copies of a stateless service behind a load balancer. When load doubles, add replicas.", "vertical scaling": "Giving your existing container more CPU and RAM. Simple, but has a ceiling.", "load balancer": "Routes incoming requests across your running replicas. Fly.io provides this; you design your app to work with it.", "replica": "One running copy of your container. Fly.io runs 2 by default. If one crashes, the other keeps serving while a replacement starts.", "normalization": "Eliminating repetition in your data by organizing tables so each fact is stored once. 1NF, 2NF, and 3NF define the levels.", "denormalization": "Deliberately storing redundant data to improve read performance. A trade-off: faster reads, harder updates.", "B-tree index": "The default index type in SQLite and PostgreSQL. A balanced tree where lookups take O(log n) instead of O(n). Excellent for equality checks and range queries.", "composite index": "An index covering multiple columns in a specific order: CREATE INDEX ON saved(user_id, type). The order matters for query matching.", "full table scan": "The database reads every row to find matches. Fast for small tables; increasingly slow as rows grow. An index prevents this.", "ACID": "Atomic, Consistent, Isolated, Durable. The four guarantees a database transaction provides. Atomic: all operations succeed or all fail.", "atomicity": "A transaction either commits completely or rolls back completely — no partial writes. The most important of the ACID properties.", "transaction": "A group of database operations that succeed or fail together. Wrap them with 'with conn:' in Python sqlite3.", "semantic color": "Color assigned meaning, not just appearance. Green = success, red = error, yellow = warning. Consistent use builds user trust.", "contrast ratio": "A measure of how distinguishable text is from its background. WCAG AA requires 4.5:1 for normal text.", "WCAG": "Web Content Accessibility Guidelines. The international standard for web accessibility. AA level is the baseline: 4.5:1 contrast, keyboard navigability, text alternatives.", "affordance": "A visual cue that signals how something can be interacted with. A raised button affords clicking. Missing affordances make users guess.", "loading state": "The visual indicator that work is in progress. Required any time an operation takes more than ~100ms.", "error state": "The designed response to failure. Not just 'something went wrong' — a specific message that tells the user what failed and what to do next.", "spacing scale": "A predefined set of spacing values (multiples of 4 or 8) that every margin, padding, and gap should come from. The invisible grid that makes interfaces feel considered.", "usability testing": "Observing real users attempt tasks with your interface. You watch; you don't help. Their struggle is the data.", "think-aloud protocol": "Asking participants to narrate their thoughts as they work. Reveals mental models and decision points you can't observe from clicks alone.", "heuristic evaluation": "A structured expert review of an interface against a checklist of known usability principles (Nielsen's 10 heuristics). No users needed.", "A/B testing": "Showing two versions of an interface to different users simultaneously and measuring which performs better on a defined metric. Requires enough traffic for statistical significance.", "statistical significance": "Confidence that an observed A/B difference is real, not random. Typically p < 0.05. Requires a minimum sample size calculated before running.", "card sorting": "Participants group topics into categories that make sense to them, revealing their mental model for navigation and information architecture.", "task completion rate": "The percentage of usability test participants who successfully completed a given task. A direct measure of interface usability.", "STRIDE": "A threat classification framework: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege.", "attack surface": "The total set of entry points an attacker could use: every HTTP endpoint, every form input, every env var read from the OS.", "trust boundary": "The line between parts of a system that run with different privilege levels. Data crossing a trust boundary must always be validated.", "injection": "Sending malicious data to an interpreter (SQL, shell, LDAP). Prevented by parameterized queries and never interpolating user input into commands.", "XSS": "Cross-Site Scripting. Injecting malicious JavaScript into a page that runs in another user's browser. Prevented by escaping user-supplied content before rendering as HTML.", "OWASP": "Open Web Application Security Project. Publishes the Top 10 most critical web security risks, updated from real-world breach data.", "output encoding": "Escaping data before rendering it in a context where it could be interpreted as code. For HTML: replace < with &lt;. For SQL: use parameterized queries.", "least privilege": "Every component should have only the permissions it needs and no more.", "threat modeling": "Systematically asking what could go wrong, who would cause it, and what the attack paths are. STRIDE is one framework.", "TDD": "Test-Driven Development. Write the test first (red), then write minimum code to pass it (green), then clean up (refactor).", "red/green/refactor": "The TDD cycle. Red: failing test. Green: minimum code to pass. Refactor: clean up while keeping tests passing.", "test double": "An object that stands in for a real dependency in tests. Includes stubs, mocks, and fakes.", "stub": "A test double that returns a fixed response. Controls what a dependency returns; does not verify it was called.", "mock": "A test double that also verifies it was called in a specific way. Use when the interaction itself is what you're testing.", "fake": "A working but simpler implementation of a dependency. An in-memory SQLite database is a fake. More realistic than a stub.", "over-mocking": "Mocking so many things that the test no longer tests real behavior. A test that passes even when the real code is broken.", "line coverage": "The percentage of code lines executed by at least one test. A floor, not a ceiling — execution doesn't mean correct behavior.", "branch coverage": "Stricter than line coverage. Measures whether both the True and False branches of every conditional were tested.", "flaky test": "A test that passes sometimes and fails sometimes without any code change. Erodes trust in the entire test suite.", "dependency override": "FastAPI's mechanism for replacing a real dependency with a test version in integration tests. app.dependency_overrides[get_db] = lambda: test_db.", "pipeline": "A directed graph of jobs that runs automatically on code changes. Each job has steps; jobs can depend on each other.", "artifact": "A file produced by one CI job and consumed by another. In GitHub Actions: uploaded/downloaded with actions/upload-artifact.", "rolling deployment": "Replacing old replicas with new ones gradually. Fly.io's default. Both versions run simultaneously during the transition.", "blue-green deployment": "Running two identical environments (blue = current, green = new). Switch traffic to green when verified; rollback is instant.", "canary deployment": "Sending a small percentage of traffic to the new version, monitoring for errors, then gradually increasing.", "feature flag": "A code-level switch that enables or disables a feature at runtime without a deployment. Decouples deployment from release.", "staging environment": "A production-like environment for testing before real users see changes. Must mirror production config and data shape.", "image tag": "A label on a Docker image. Use the git SHA for immutable, traceable production deployments. Never deploy with 'latest'.", "container registry": "A server that stores Docker images. At your company: ghcr.io (GitHub Container Registry). CI builds and pushes; Fly.io pulls and deploys.", "broken main": "The state where the main branch is failing CI. Blocks the whole team. Treat as P1 — fix before any other work.", "SLO": "Service Level Objective. A target value for a reliability metric over a time window. '99% of requests respond in under 300ms, measured over 30 days.'", "SLI": "Service Level Indicator. The actual measurement your SLO is set against. Ratio of good events to total events.", "error budget": "The amount of unreliability your SLO allows. If your SLO is 99.5%, your budget is 0.5%. When it's gone, slow down changes.", "alert fatigue": "The state where engineers stop responding to alerts because there are too many false positives. A noisy alert is worse than no alert.", "symptom-based alerting": "Alerting on what users experience (high error rate, slow responses) rather than internal system state (CPU at 70%).", "trace": "A record of the end-to-end journey of a single request, composed of spans. Has a unique trace ID propagated across all services.", "span": "One unit of work within a trace: a single function call, DB query, or HTTP request. Has a start time, duration, and status.", "golden signals": "Google SRE's four key metrics: Latency, Traffic, Errors, Saturation. The minimum viable alert set for any service.", "USE method": "A dashboard framework: Utilization, Saturation, Errors — one row per resource.", "RED method": "A service dashboard framework: Rate, Errors, Duration — the three panels that tell you if a service is healthy.", "incident": "An unplanned event that degrades or disrupts a service for users. Defined by user impact, not alert count.", "postmortem": "A structured written review of what happened, why, and what will change. Blameless: fix the system, not the person.", "incident commander": "The person coordinating the response — keeping track of what's being tried and communicating status to stakeholders.", "toil": "Repetitive, manual operational work that scales with the service but produces no lasting improvement. Keep below 50% of ops time.", "N+1 query": "Loading N items with N+1 database queries: one for the list, then one per item. Fix with a JOIN or single bulk query.", "profiling": "Instrumenting a program to measure how much time and memory each function uses. Never optimize without profiling first.", "headroom": "The gap between current resource utilization and the limit. Below 20%: plan an upgrade. Below 10%: act now.", "ADR": "Architecture Decision Record. A short document recording a significant decision: what was decided, why, and what alternatives were rejected.", "SemVer": "Semantic Versioning. MAJOR.MINOR.PATCH. MAJOR: breaking change. MINOR: new backwards-compatible feature. PATCH: bug fix.", "deprecation": "An explicit signal that a feature will be removed in a future version. Requires: what's deprecated, when it's removed, what to use instead.", "sunset period": "The window between deprecation announcement and removal. Long enough for consumers to migrate; short enough that it doesn't become permanent.", "bikeshedding": "Spending disproportionate review time on trivial, subjective details while giving less attention to logic, correctness, and security.", "CODEOWNERS": "A file (.github/CODEOWNERS) that assigns ownership of files to users or teams. GitHub auto-requests review from owners when their files change.", "blameless": "A postmortem culture where the goal is to improve the system, not assign fault. 'What allowed this to happen?' not 'who caused this?'", "pull request": "A proposal to change a shared codebase. Creates a reviewable diff, requires approval, and produces a permanent audit record.", "branch protection": "GitHub repo settings that block direct commits to main, require reviews before merge, and optionally require CI to pass.", "audit trail": "A chronological record of who changed what in a system and why. In GitHub, the PR history is part of the audit trail.", "your compliance framework": "your compliance framework. your program ensuring products and data don't violate U.S. and international export control laws.", "coroutine": "A function defined with 'async def'. Does not run when called — returns a coroutine object. The event loop runs it when you await it.", "event loop": "Python's asyncio event loop. Switches between coroutines when they yield control (await), so I/O wait time isn't wasted.", "Pod": "The smallest deployable unit in Kubernetes. Contains one or more containers that share a network namespace. Fly.io creates Pods for each replica.", "liveness probe": "Kubernetes calls this endpoint periodically. Failures trigger a container restart. Your /health endpoint serves as the liveness probe.", "readiness probe": "Kubernetes calls this during startup. Until it passes, the Pod receives no traffic. Ensures your app is fully initialized before serving.", "OOM": "Out of Memory. When a container exceeds its memory limit, the kernel kills the process (OOM kill) and Kubernetes restarts the Pod.", "window function": "A SQL function that computes across a set of rows without collapsing them. ROW_NUMBER(), RANK(), and running totals are window functions.", "CTE": "Common Table Expression. A named subquery defined with WITH that makes complex SQL readable by building it in named steps.",
+"SQLite": "A serverless, file-based relational database. The entire database lives in a single .db file on disk. Zero configuration, zero network hops. Used in production by millions of apps at low-to-medium concurrency.",
+"SQLite WAL": "SQLite with Write-Ahead Logging enabled. WAL mode allows concurrent readers while a write is in progress, dramatically improving throughput for read-heavy workloads. Enabled with PRAGMA journal_mode=WAL;",
+"WAL mode": "Write-Ahead Logging. A SQLite pragma that separates reads from writes by appending changes to a WAL file before applying them to the main database. Enables multiple simultaneous readers.",
+"PostgreSQL": "An open-source, full-featured relational database. The industry standard for production applications that need SQL, joins, JSONB, full-text search, and strong ACID guarantees. Self-hosted or managed via Supabase, Neon, Railway, or AWS RDS.",
+"Postgres": "Short for PostgreSQL. The open-source relational database that serves as the backbone for most FastAPI/Python production backends.",
+"MySQL": "An open-source relational database that predates PostgreSQL's widespread adoption. Powers much of the web (WordPress, legacy Rails apps, older enterprise stacks). InnoDB engine provides ACID compliance. Functionally similar to PostgreSQL; PostgreSQL is preferred for new projects.",
+"MariaDB": "A fork of MySQL created after Oracle's acquisition. Drop-in compatible with MySQL — same SQL syntax, same drivers, same migration patterns. The default MySQL replacement on many Linux distros with more active open-source development.",
+"InnoDB": "MySQL's default storage engine. Provides ACID compliance, foreign key constraints, and row-level locking for concurrent writes. Replaced MyISAM as the default in MySQL 5.5.",
+"Supabase": "Managed PostgreSQL with a built-in realtime engine, auto-generated REST/GraphQL API, Row Level Security, and auth. Runs standard Postgres under the hood — you can always eject and self-host.",
+"Neon": "Serverless PostgreSQL. Scales to zero when idle, spins up on first query. Offers database branching — fork your entire database like a git branch for testing schema changes. Standard psycopg2 driver, no code changes required.",
+"PlanetScale": "A MySQL-compatible serverless database built on Vitess. Designed for horizontal scale with branches for schema changes, no foreign keys (by design), global replication. Used at 1000+ concurrent user scale.",
+"MongoDB": "A document-oriented NoSQL database. Stores data as BSON documents (similar to JSON). Schema-optional: documents in the same collection can have different fields. Strong choice when your data is naturally hierarchical or denormalized.",
+"Redis": "An in-memory key-value store used for caching, session management, rate limiting, pub/sub messaging, and leaderboards. Answers queries in microseconds. A caching layer in front of a primary database, not a replacement for one.",
+"Turso": "Managed SQLite at the edge. Replicates SQLite databases to Cloudflare edge nodes globally. Uses the libsql fork of SQLite. Ideal for small-to-medium apps that want distributed read performance without PostgreSQL overhead.",
+"Firestore": "Google Cloud's managed NoSQL document database with native realtime sync. Pushes data changes to connected clients instantly. No SQL, no joins. Pricing is per read/write operation.",
+"Snowflake": "A cloud data warehouse built for analytical workloads. Stores data in columnar format optimized for aggregation across millions of rows. Not suitable as an application database — queries take seconds, not milliseconds.",
+"BigQuery": "Google Cloud's managed serverless data warehouse. Charges per byte scanned. Built for analytical queries on massive datasets. Not an application database.",
+"Redshift": "Amazon's managed data warehouse, based on PostgreSQL 8. Columnar storage, massive parallel processing. Part of the AWS analytics ecosystem. Not suitable for transactional app workloads.",
+"DuckDB": "An embedded analytical database — like SQLite but for OLAP instead of OLTP. Runs in-process, no server needed. Extremely fast at aggregating columnar data from local files (Parquet, CSV). Used for local data analysis.",
+"Vitess": "A sharding and connection pooling system built on top of MySQL. Originally developed at YouTube. Powers PlanetScale. Handles shard routing, connection multiplexing, and schema migrations at extreme scale.",
+"libsql": "An open-source fork of SQLite maintained by the Turso team. Adds network access, replication, and HTTP connectivity to standard SQLite.",
+"ACID": "Atomicity, Consistency, Isolation, Durability. The four properties that guarantee database transactions are processed reliably. PostgreSQL and SQLite are fully ACID-compliant. Most NoSQL databases relax one or more of these for performance.",
+"CAP theorem": "You can only guarantee two of three: Consistency, Availability, Partition tolerance. A mental model for understanding distributed database tradeoffs. PostgreSQL prioritizes CP; Cassandra prioritizes AP.",
+"sharding": "Horizontal database scaling by splitting data across multiple servers. Each shard holds a subset of rows. PlanetScale via Vitess handles sharding automatically.",
+"Row Level Security": "A PostgreSQL feature (RLS) that enforces per-row access rules inside the database itself. Supabase builds its auth model on top of RLS.",
+"JSONB": "PostgreSQL's binary JSON column type. Stores JSON as a parsed binary structure so you can index and query inside JSON fields efficiently.",
+"schema migration": "A versioned, repeatable script that transforms your database schema. Applied once in order. Your run_migrations() function in main.py is your migration system.",
+"ORM": "Object-Relational Mapper. A library that maps database rows to Python objects. SQLAlchemy is the standard Python ORM.",
+"OLTP": "Online Transaction Processing. The workload pattern of production apps: many short reads and writes per second, high concurrency, strict ACID requirements. PostgreSQL, MySQL, and SQLite are OLTP databases.",
+"OLAP": "Online Analytical Processing. The workload pattern of analytics: few long-running queries that scan and aggregate millions of rows. Snowflake, BigQuery, DuckDB, and Athena are OLAP engines. Not suitable as your app's primary database.",
+"JSON files": "Using JSON files on disk as a data store. Read the whole file into memory, mutate it in Python, write it back. Valid for config and feature flags at tiny scale. Breaks under concurrent writes — no transactions, last write wins.",
+"CSV files": "Comma-separated value files used as a data store. Even more limited than JSON: no nested data, no types, append-only patterns. Appropriate for static reference datasets or import/export — not for live application data.",
+"data warehouse": "A database optimized for analytical queries — aggregating, grouping, and scanning large historical datasets. Columnar storage. Examples: Snowflake, BigQuery, Redshift. Downstream of your application database, not a replacement for it.",
+"columnar storage": "A database storage format where each column's values are stored together on disk rather than by row. Makes aggregation queries extremely fast by reading only the columns needed. Used in data warehouses.",
+"serverless database": "A database that scales to zero when idle and provisions compute on-demand. No always-on instance costs. Examples: Neon (Postgres), Turso (SQLite), PlanetScale. Tradeoff: cold start latency on first request after idle.",
+"Atlas (MongoDB)": "MongoDB's managed cloud service. Handles replication, backups, auto-scaling, and global distribution on AWS, Azure, or GCP.",
+"connection pooling": "Reusing a pool of database connections rather than opening a new one per request. Essential for PostgreSQL at scale. PgBouncer is the standard pooler; Supabase includes Supavisor.",
+"denormalization": "Intentionally storing duplicate data to avoid joins. Common in document databases (MongoDB, Firestore) where joins do not exist.",
+"eventual consistency": "A replication model where replicas will converge to the same value but not necessarily immediately. Contrasts with strong consistency (where all reads reflect the latest write)."
+};
 // sort terms longest-first so multi-word terms match before their substrings
 const _glossKeys = Object.keys(GLOSSARY).sort(function(a,b){return b.length-a.length;});
 const DIONNE_TAKES = {"user_id": "Okay so basically? It's your company's auth token. Your SSO stamps it on literally everything that comes through the door. Your whole app should be, like, totally obsessed with it — every query, every write, every delete. Miss one check and some random can read your diary. As if.", "Okta": "The velvet rope at the front. If you're not through Okta, you are not getting in. End of conversation.", "Fly.io": "Where your app goes to live its best life. Like sending your code to a really excellent school where someone else handles all the infrastructure drama. Just make sure your container is dressed correctly — non-root user, port 8080, Cosign-signed. The works.", "Docker Desktop": "Docker Desktop said 'pay up' and your company said 'as if.' Same commands, totally different outfit. You won't even notice the switch.", "your network layer": "The bouncer. It controls who gets near the door at all. On Fly.io, it's just... there. Handling it. You're welcome.", "Rio": "Your managed CI/CD platform. Once the pipeline knows exactly where to deploy, going back to manual is like wearing last season.", "OpenTelemetry": "The universal translator for telemetry. Logs, metrics, traces — one SDK, works everywhere. Not using it is like speaking in dialects when everyone agreed on a language.", "Cloudflare WAF": "The WAF you need when your app is reachable from outside the your network. If you're internal-only behind your network layer, totally not your problem. If you're not — it's your problem. Big time.", "Cosign": "Image signing. Fly.io won't run a container that hasn't pinky-promised it's legit. Sign your image as part of the build. Non-negotiable.", "Datadog": "The observability layer that lives in Fly.io and watches your app's vitals whether you configure it or not. CPU, memory, errors. It's in on the heavy clambakes.", "GitHub Container Registry": "Your container image registry. Push images here; your platform pulls them at deploy time. External registries are so not okay at your company.", "separation of concerns": "Your nginx doesn't know Python. Your API doesn't know HTML. Your database doesn't know what your UI looks like. Everyone stays in their lane. That's how you can rebuild the entire frontend without your data even noticing. Way elegant.", "stateless": "Can be murdered, restarted, replaced, and no one loses a single saved item. Total Baldwin energy — effortlessly resilient. Keep your state in the database where it belongs.", "stateful": "Holds the receipts. You cannot just kill it and start fresh because it actually remembers things. Your SQLite file is stateful. Your FastAPI process is not. Know the difference.", "idempotent": "Safe to run over and over and always get the same result. CREATE TABLE IF NOT EXISTS is idempotent. A plain INSERT is not. Your migrations must be idempotent — Fly.io will restart your container mid-deploy and run them again.", "API contract": "A pinky promise between your endpoints and everyone who calls them. Add fields all you want — that's fine. But the day you remove or rename something is the day you are totally buggin' every caller who depended on you.", "coupling": "The clingy relationship of software. Tight coupling means one thing changes and everything else is having a crisis. Loose coupling is, like, mature. Keep it loose.", "cohesion": "Does your module do one thing really well, or is it a mess of unrelated responsibilities? High cohesion is the goal. Low cohesion is a Barney.", "CAP theorem": "In distributed systems you cannot have everything. Consistent or available when the network goes down — pick one. Way harsh, but that's just how it is.", "eventual consistency": "Things will be the same everywhere, eventually. Not immediately. Good enough for leaderboards and feeds. Totally not okay for your bank balance.", "horizontal scaling": "Run more copies of your app instead of making one copy bigger. Total power move — but only works if your app is stateless. Which it should be.", "vertical scaling": "Give your container more CPU and RAM. Simple, but you will hit a ceiling. It's not a long-term strategy, it's a stopgap.", "replica": "One running copy of your container. Fly.io runs two by default. They don't share memory. If your state lives in a Python dict, you are about to have a very bad time.", "load balancer": "Routes traffic across your replicas. Fly.io handles this. You just need to design your app knowing that any replica could handle any request.", "TTL": "How long a cached answer stays fresh before you have to go get the real one. Short TTL means fresher data, more misses. Long TTL means stale risk. This is genuinely a judgment call every time.", "cache invalidation": "The hardest part of engineering, which is saying a lot. When do you throw away what you know? There's no universal answer. Way harsh.", "schema": "The outfit your data wears to every request. Once real users have saved things to it, you cannot just change it on a whim. That is what migrations are for.", "migration": "How you change the schema without burning down everything your users already saved. Like a makeover that keeps the same personality.", "normalization": "Storing each fact exactly once. The Marie Kondo of database design. If the same data appears in multiple rows, you have a normalization problem waiting to become a bug.", "denormalization": "Deliberately storing the same data in multiple places for speed. A trade-off, not a mistake. Know why you're doing it.", "transaction": "All or nothing. Either the whole thing commits or nothing does. No partial saves. No half-written records. A full commitment. Use 'with conn:' in Python.", "ACID": "The gold standard guarantee. Atomic, Consistent, Isolated, Durable. A database that keeps its promises regardless of what else is happening.", "full table scan": "The database reading every single row to find a match. For small tables, fine. For large ones, you need an index. EXPLAIN QUERY PLAN will tell you if this is happening.", "N+1 query": "You're fetching a list, then making a separate database trip for each item. That is SO not okay. One query. Use a JOIN. Your p99 latency will thank you.", "parameterized query": "Never, ever let user input touch your SQL directly. That is way harsh for your database and your users. Use the question mark placeholder. The driver handles escaping.", "STRIDE": "The threat checklist that makes you think about all the ways someone could mess with your app. Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege. Do the walk-through before you ship.", "attack surface": "Every entry point an attacker could probe. Every endpoint. Every input. Every env var. Fewer is better. Close what you don't use.", "trust boundary": "The line between things that run with different privilege levels. Data crossing that line gets validated. Always. No exceptions.", "injection": "What happens when you let user input become part of a command. SQL injection, shell injection — same bad idea, different interpreter. Parameterize everything.", "XSS": "When you let user input become HTML without escaping it first, you've basically invited strangers to inject scripts into your users' browsers. As if. Escape everything before innerHTML.", "OWASP": "The official list of the ways developers accidentally let attackers in. Required reading. Not cute, but necessary.", "output encoding": "Escaping data before it gets rendered somewhere it could be interpreted as code. HTML, SQL, shell — each context has its own rules. Learn them.", "least privilege": "Everyone only gets the access they actually need. Not 'admin because it's easier to set up.' Not 'owner because they asked.' Just exactly what the job requires.", "threat modeling": "Asking 'what could go wrong, and who would do it?' before you build. Thirty minutes of this upfront saves days of incident response later.", "TDD": "Write the test before the code. Sounds backwards, but the red-green-refactor cycle means your tests actually prove something. A test that was never red is not a test.", "test double": "A stand-in for a real dependency. Like an understudy — plays the role, follows the same rules, but won't actually send a Slack message or query production.", "stub": "Returns a fixed response. You control what it gives back. Useful for making a dependency behave predictably. Does not verify it was called.", "mock": "Like a stub but with receipts. It verifies the interaction happened. Use it when the call itself is the thing you're testing, not just the return value.", "fake": "A real working implementation that's simpler than the real thing. SQLite in-memory is a fake. More trustworthy than a mock, faster than the real thing.", "over-mocking": "Mocking so many things that you're basically testing your mocks. The test passes, the real code is broken. As if that counts as tested.", "flaky test": "Passes sometimes, fails sometimes, no code changes. A test that lies. Delete or fix it immediately. A lying test trains everyone to ignore CI failures. Way harsh consequences.", "line coverage": "Tells you which lines ran. Does not tell you they did the right thing. 100% coverage and still totally wrong is a real thing. It's a floor, not an achievement.", "pipeline": "The automated sequence that runs every time you push. Tests, builds, deploys — in order, gated. The thing that means you can ship with confidence.", "feature flag": "You can deploy code without releasing it. Ship with the flag off, enable when you're ready. Decouples 'it's in production' from 'users can see it.' Very sophisticated.", "rolling deployment": "Old replicas get replaced gradually with new ones. Both versions exist simultaneously for a window. Your API changes must be backwards-compatible during that window. Non-negotiable.", "blue-green deployment": "Run two identical environments. New code goes to green, users stay on blue. Flip the switch when verified. Rollback is instant — just flip back. Way cleaner than rolling.", "canary deployment": "Send five percent of traffic to the new version. Watch for errors. Increase gradually. If something blows up, only five percent of users noticed. Very considerate.", "image tag": "Use the git SHA. Not 'latest.' Latest changes every build so you genuinely don't know what's running. The SHA is receipts. You can trace it back to the exact commit.", "broken main": "CI is failing and nobody can merge. Total crisis. Drop everything. Fix it now. Broken main is everyone's emergency, not whoever broke it.", "SLO": "Turn 'the app should be reliable' from a wish into a number you can measure. '99% of requests respond in under 300ms over 30 days.' Now you have something to hold yourself to.", "SLI": "The actual measurement your SLO is set against. Ratio of good requests to total. The thing you graph. The thing that tells you if you're keeping your promise.", "error budget": "The math behind your SLO. How much failure you're allowed before you've broken the agreement. When it's running low, slow down. When it's healthy, ship freely.", "alert fatigue": "What happens when alerts fire so often for nothing that engineers stop caring. Then the real emergency fires and everyone ignores it. Way harsh outcome. Fix noisy alerts immediately.", "trace": "The receipt for a single request's entire journey. Where it went, how long each step took, which one was the bottleneck. The thing that tells you WHERE the 800ms went.", "span": "One unit of work inside a trace. Your DB query is a span. Your cache lookup is a span. Nest them and you get the full picture.", "golden signals": "The four metrics that tell you if your service is having a moment: Latency, Traffic, Errors, Saturation. Start here before you add anything else.", "runbook": "The document that tells the on-call engineer what to do when the alert fires. Exists specifically so they don't have to figure it out at 2am under pressure.", "incident": "An unplanned event actually affecting real users. Roll back first. Debug second. Users come before your curiosity about what broke.", "postmortem": "The write-up that figures out what happened and how to prevent it. Not about who caused it — about what allowed it. Blameless. The goal is a better system, not a scapegoat.", "toil": "Doing the same manual thing over and over because the system requires it. If you're restarting a service every Monday, that's toil. Fix the root cause. Don't automate the workaround.", "rollback": "Your emergency exit. Previous known-good image tag, back in production, users stop suffering. Under two minutes. You can debug the bad version calmly afterward. You got my marker.", "profiling": "Measuring where your code actually spends its time before you optimize anything. The bottleneck is almost never where you think it is. Measure first, always.", "ADR": "Architecture Decision Record. Write down why you made the decision, not just what it was. Future you — and the next engineer — will be so grateful they could cry.", "SemVer": "Your version number is a pinky promise. MAJOR means something broke. MINOR means new things, nothing broke. PATCH means small fix. Don't lie with your version numbers.", "bikeshedding": "Spending fifteen minutes arguing about a variable name while the actual security gap goes unreviewed. We've all been there. It is way harsh to do to your reviewer.", "CODEOWNERS": "The file that tells GitHub who has to review what. Compliance-sensitive files get the right eyes automatically. Very organized. Very non-negotiable.", "deprecation": "An official heads-up that something is going away. What's leaving, when, and what to use instead. Give people enough time to migrate and they'll keep it real with you.", "pull request": "The paper trail that keeps your team compliant. Who changed what, when, and why — permanently documented. Write your PR descriptions like someone will read them during an audit. Because they will.", "your compliance framework": "Global Export and Sanctions Compliance. When a compliance requirement lands, it is not a suggestion. It has legal weight. Do not route around it. Ask the your compliance team if you're unsure.", "branch protection": "The safety net that stops anyone — including you — from force-pushing to main or merging without a review. Essential. Not optional.", "audit trail": "The permanent record. Your PR history is compliance documentation. 'Fix stuff' is not an acceptable PR description. Write it like it matters — because it does.", "coroutine": "An async function that doesn't actually run when you call it. It gives you a coroutine object instead. You have to await it. Forgetting await is a completely silent bug. Totally not obvious.", "event loop": "asyncio's single-threaded multitasker. Switches between coroutines while they're waiting on I/O. One thread, many things making progress. Very efficient.", "Pod": "The Kubernetes word for 'your container is running somewhere.' Fly.io creates them. They die, get replaced, and no one cries as long as your app is stateless.", "liveness probe": "The health check Kubernetes uses to decide whether to restart your container. If it fails enough times in a row, Kubernetes is like, okay, starting over. Make sure it actually validates your DB.", "readiness probe": "Different from liveness. This one controls traffic — Kubernetes won't send requests until the probe passes. Useful for making sure your app is fully initialized before it has to serve anyone.", "window function": "Does math across a set of rows without collapsing them. ROW_NUMBER, running totals, rankings — all without GROUP BY eating your data. Game-changing once you know it.", "CTE": "Common Table Expression. Instead of nesting subqueries inside subqueries inside subqueries, you name each step. Readable SQL is a gift to everyone who comes after you."};
@@ -3018,6 +3122,231 @@ if(_initPanel && _initPanel.id && _initPanel.id.startsWith('panel-mod')){
   const _mod = _initPanel.id.replace('panel-','');
   if(typeof renderModule==='function') renderModule(_mod);
 }
+
+/* ══ DATA LAYER DECISION MATRIX ══════════════════════════════════════════ */
+(function(){
+  var DM_QUESTIONS = [
+    {key:'users', q:'How many concurrent users are you expecting?', opts:[
+      {val:'lt10',   label:'Under 10',     desc:'Personal tool, internal dashboard, solo project'},
+      {val:'10-100', label:'10 – 100',      desc:'Small team app, early-stage product, beta'},
+      {val:'100-1k', label:'100 – 1,000',   desc:'Growing product, active user base'},
+      {val:'1k+',    label:'1,000+',        desc:'Production scale, public-facing, high traffic'}
+    ]},
+    {key:'rw', q:'Is your workload read-heavy, write-heavy, or balanced?', opts:[
+      {val:'reads',    label:'Mostly reads',    desc:'Dashboards, lookups, caches — queried far more than written'},
+      {val:'writes',   label:'Mostly writes',   desc:'Ingestion pipelines, event logs, audit trails — constant new data'},
+      {val:'balanced', label:'Balanced',        desc:'Typical CRUD app — roughly equal reads and writes'}
+    ]},
+    {key:'scale', q:'Single-server or distributed / multi-region?', opts:[
+      {val:'single', label:'Single server',  desc:'One region, one instance — simpler ops, lower latency'},
+      {val:'multi',  label:'Multi-region',   desc:'Users across geographies, edge deployments, or you need HA failover'}
+    ]},
+    {key:'realtime', q:'Do you need realtime sync across connected clients?', opts:[
+      {val:'yes', label:'Yes — push updates',     desc:'Changes appear instantly on all open sessions without a page refresh'},
+      {val:'no',  label:'No — polling is fine',   desc:'Users refresh or you poll on an interval; sub-second push not required'}
+    ]},
+    {key:'managed', q:'Are you managing your own infrastructure?', opts:[
+      {val:'selfhosted', label:'Yes — self-hosted',      desc:'You own the server, the backups, the connection pool, the vacuums'},
+      {val:'managed',    label:'No — managed preferred', desc:'You want a service to handle ops: backups, scaling, patches'}
+    ]},
+    {key:'relational', q:'Do you need to query across relationships (JOINs, foreign keys)?', opts:[
+      {val:'yes', label:'Yes — relational',      desc:'Your data has tables that reference each other; you write JOIN queries'},
+      {val:'no',  label:'No — document / flat',  desc:'Your data is self-contained per record; no cross-table queries needed'}
+    ]}
+  ];
+
+  var DM_RESULTS = {
+    json: {
+      name:'JSON Files', emoji:'📄', badge:'File-based · Config data · Zero-dependency', color:'var(--yellow-light)',
+      why:"Oh honey. Your workload is so light it barely counts as a workload. JSON files on disk — read the whole thing into memory, write the whole thing back on change — is absolutely valid at this scale. No server, no driver, no query language, no connection pool. Just open(), json.load(), and json.dump(). For config data, feature flags, or a tiny static dataset with one writer and a handful of readers, this is not a step backward. It is the right tool. Do not over-engineer a to-do list.",
+      cost:"The moment you have concurrent writers, you get race conditions — last write wins, period. No transactions, no atomic updates across multiple records, no query language. Searching means loading everything into memory and filtering in Python. File size caps what you can hold. This is a config-tier solution, not an application database.",
+      rubric:"JSON files have no migration system, no health check endpoint, and no query layer. You will score zero on Data Layer if this is your primary persistence for user data. Consider this only for truly static config that never grows. The moment you are storing user records, upgrade to SQLite before your first real user shows up."
+    },
+    sqlite: {
+      name:'SQLite WAL', emoji:'🗂️', badge:'Self-hosted · Single server · File-based', color:'var(--yellow)',
+      why:"Okay, so? Your workload is genuinely perfect for SQLite with WAL mode on. We are talking zero network hops, zero configuration, and a single file that survives reboots without a DBA. WAL mode lets multiple readers run concurrently while writes queue gracefully — so your ten users will never trip over each other. The fact that it is just a file means your backup strategy is literally cp main.db main.db.bak. It is not boring. It is correct.",
+      cost:"You cannot scale horizontally. The moment you need two servers pointing at the same database, SQLite gets genuinely complicated. That day may never come for this project — but if it does, you will migrate to Postgres. Also: WAL files accumulate and need an occasional PRAGMA wal_checkpoint to compact back down.",
+      rubric:"SQLite is the exact engine the rubric pattern is written around. DB_PATH env var, run_migrations() in main.py, SELECT 1 health check — you earn full Data Layer points for this. This is the model solution."
+    },
+    turso: {
+      name:'Turso', emoji:'⚡', badge:'Managed · Edge SQLite · Multi-region', color:'var(--mint)',
+      why:"Turso is SQLite but make it distributed. It runs your database at Cloudflare's edge nodes — automatically replicated, globally close to your users, queryable with the standard sqlite3 API you already know. At your scale with managed infrastructure preferred, it is honestly the most underrated option on this list. You get SQLite simplicity without the single-server ceiling, and you never think about a replica again.",
+      cost:"You are on a startup's proprietary edge platform — Turso is well-funded but it is not a 30-year institution. Their libsql fork is SQLite-compatible but the replication protocol is their own. Read the SLA before betting production on it. Free tier is generous; pricing scales with storage and row reads.",
+      rubric:"Turso uses the libsql Python driver, which is a drop-in replacement for sqlite3. Your existing run_migrations() pattern and DB_PATH env var transfer with minor adjustments. The rubric's migration and health check patterns work cleanly."
+    },
+    postgres: {
+      name:'PostgreSQL', emoji:'🐘', badge:'Self-hosted · Relational · Battle-tested', color:'var(--lavender)',
+      why:"Darling, PostgreSQL is the little black dress of databases — it never goes out of style. It does joins, JSONB, full-text search, window functions, and row-level security without blinking. WAL-based replication means you can add a read replica when you are feeling fancy. At your scale with your write pattern and relational needs, it handles everything with absolute grace and asks for nothing in return except for you to remember to VACUUM occasionally.",
+      cost:"You are owning the infrastructure. Backups, vacuums, connection pooling (use PgBouncer or Supabase's Supavisor), and major version upgrades are now your calendar items. This is not a dealbreaker — it is just a full-time relationship with your database. Self-hosting also means you are responsible for the uptime number.",
+      rubric:"Self-hosting means you own the migration story completely. run_migrations() calling CREATE TABLE IF NOT EXISTS, DB_PATH pointing at your Postgres URL, SELECT 1 health check — the rubric was written with this pattern in mind. Full Data Layer points with correct implementation."
+    },
+    mysql: {
+      name:'MySQL / MariaDB', emoji:'🐬', badge:'Self-hosted · Relational · Write-optimized', color:'var(--lavender)',
+      why:"MySQL has been powering production databases since the late 90s, and at write-heavy scale there is a reason it is still everywhere. MariaDB is a drop-in fork with a more active open-source community — either one works and your application code barely notices the difference. At your scale with your write pattern, MySQL's InnoDB engine handles concurrent writes with serious efficiency. If your team already runs MySQL infrastructure, staying here is a completely legitimate call.",
+      cost:"MySQL is not Postgres. You lose JSONB (use JSON type instead, slower to query), window function behavior differs in edge cases, and STRICT mode is off by default in older configs — meaning type coercions you would never expect from Postgres will silently pass. If you are starting fresh with no existing MySQL infrastructure, PostgreSQL is almost always the better technical choice.",
+      rubric:"MySQL uses the same migration pattern — run_migrations() with CREATE TABLE IF NOT EXISTS and a SELECT 1 health check. The Python driver is mysql-connector-python or PyMySQL instead of psycopg2. The rubric checks pass cleanly. Swap DB_PATH for DATABASE_URL in your env and you are done."
+    },
+    neon: {
+      name:'Neon', emoji:'✨', badge:'Serverless Postgres · Managed · Branches', color:'var(--lavender-light)',
+      why:"Neon is PostgreSQL, but serverless — it scales to zero when idle and spins back up on the first query. No instance to keep alive, no idle compute charges. The branching feature lets you fork your entire database like a git branch for testing schema changes before applying them to production. At your scale with managed infrastructure preferred and no realtime requirement, Neon gives you real Postgres without Supabase's entire entourage of auth, storage, and realtime that you may not need yet.",
+      cost:"Serverless means cold starts — the first query after an idle period can take a few hundred milliseconds. Fine for dashboards and background jobs, noticeable for user-facing requests on low-traffic apps. Newer service than Supabase or PlanetScale, so less battle-tested at extreme scale. Pricing scales with compute time and storage.",
+      rubric:"Neon uses the standard psycopg2 or asyncpg Postgres driver. Your run_migrations() pattern, DB_PATH as DATABASE_URL, and SELECT 1 health check all work with zero changes. Full Data Layer points — it is just Postgres."
+    },
+    supabase: {
+      name:'Supabase', emoji:'💚', badge:'Managed Postgres · Realtime · Auth included', color:'var(--mint)',
+      why:"Supabase is like getting a Postgres database that shows up to the party with its own entourage — realtime subscriptions, Row Level Security, an auto-generated REST API, storage, and auth all baked in. It is managed Postgres dressed in its best outfit. You write real SQL, your migrations live in /supabase/migrations, and the realtime engine pushes changes to connected clients through WebSockets automatically. It is so fetch, and unlike fetch, it is absolutely going to happen.",
+      cost:"You are on Supabase's pricing tier, not your own server. The free tier is generous but you will feel it at the edge — connection limits, storage caps, and pause-on-inactivity on free projects. The realtime protocol is their own implementation, so if you ever migrate off, the subscription listeners need rewriting. Vendor lock-in is real but low-friction.",
+      rubric:"Supabase migrations live in /supabase/migrations/ and apply via supabase db push — count this as your run_migrations() equivalent for rubric purposes. Use a thin wrapper that calls them at startup and the migration check passes."
+    },
+    planetscale: {
+      name:'PlanetScale', emoji:'🪐', badge:'Managed · MySQL · Horizontal scale', color:'var(--pink)',
+      why:"At your scale, you need a database that does not even flinch. PlanetScale is MySQL-compatible but built on Vitess — the sharding layer that powers YouTube — and it handles millions of queries per second across multiple regions without you touching a replication config. The branch-based schema workflow means you literally PR your migrations like code, which is extremely on-brand for a platform engineer. Deploy branches, merge schemas, roll back without fear.",
+      cost:"It is MySQL, not Postgres. Some things you love about Postgres — JSONB, arrays, certain window functions — behave differently or require workarounds. No foreign key constraints (by design, for sharding). Pricing scales with storage and reads, so audit your query patterns before you go wide.",
+      rubric:"The branching workflow is excellent real-world practice, but the rubric's migration pattern check expects a Python run_migrations() call that wraps schema execution. Keep that wrapper even if PlanetScale handles the underlying sync. Your Data Layer score depends on the pattern, not the engine."
+    },
+    mongodb: {
+      name:'MongoDB', emoji:'🍃', badge:'Document DB · Schema-optional · NoSQL', color:'var(--mint)',
+      why:"Your data is not a spreadsheet — it is a vibe. MongoDB stores documents instead of rows: you can add fields without writing a migration, nest objects naturally, and query by any field without committing to a rigid schema upfront. At your scale and with your read/write pattern, the document model fits how your data actually flows. The managed Atlas tier handles replication, backups, and auto-scaling without you configuring a replica set by hand.",
+      cost:"The absence of joins is a feature that slowly becomes a pain when you realize you do need to relate things. Schema-on-read means your application code is responsible for validating data shape — the database enforces nothing. Aggregation pipelines can replace JOIN logic but they are their own thing to learn.",
+      rubric:"MongoDB has no migration concept in the traditional sense — collections are schemaless. You will need to write a custom migrations() function that applies index creation and document-level transforms, or you will miss the migration check on the rubric. The pattern matters even if the engine is different."
+    },
+    redis: {
+      name:'Redis', emoji:'💾', badge:'In-memory · Cache layer · Microsecond reads', color:'var(--yellow)',
+      why:"Your workload is almost entirely reads, and you are basically asking for a database that answers in microseconds. Redis is in-memory key-value storage — it is so fast it is almost rude. Session data, rate limiting counters, leaderboard scores, cached query results that would otherwise hammer your primary DB — this is Redis's entire personality. At your read-heavy scale, a well-keyed Redis cache can eliminate 80% of your database load entirely.",
+      cost:"Redis is not your primary database — it is a caching layer in front of one. You still need Postgres or SQLite underneath it for durable storage. In-memory means you cap your dataset at available RAM and you need an eviction policy. Budget for both Redis and your primary DB.",
+      rubric:"Redis does not replace a persistent data layer — it augments one. The rubric checks for a primary DB with migrations and health checks. Redis gives you a high score on performance patterns, but you need a Postgres or SQLite underneath it to earn the Data Layer dimension points."
+    },
+    firestore: {
+      name:'Firestore', emoji:'🔥', badge:'Managed · Realtime · Document · GCP', color:'var(--pink)',
+      why:"Realtime and document data? Firestore was designed for this exact use case. It pushes data changes to all connected clients in milliseconds, handles offline state and reconnection automatically, and scales to global traffic with zero infrastructure work on your end. Google Cloud handles the replication across regions. You define collections and documents, write security rules, and it is just there — alive, synced, real.",
+      cost:"Firestore is a Google service — you are firmly on GCP. Pricing is per read/write operation, not per GB, so high-frequency realtime listeners on noisy collections get expensive fast if you are not careful about query design. No SQL, no aggregations across documents without Cloud Functions, no joins.",
+      rubric:"Firestore has no migration concept — collections are created on first write. You will not earn the migration pattern point on the rubric without writing a custom wrapper. If your app genuinely needs realtime sync at this scale, that is the correct technical tradeoff — document it in your README and note it in your Data Layer self-assessment."
+    },
+    analytics: {
+      name:'Snowflake / BigQuery / Redshift', emoji:'📊', badge:'Columnar · OLAP · Analytics — not app data', color:'var(--yellow)',
+      why:"Okay, I need to stop you right here because I think you might be asking the wrong question. Your pattern — reads-only, massive scale, distributed, no realtime, no relational queries — is not an application database pattern. It is an analytics pattern. Snowflake, BigQuery, and Redshift are columnar data warehouses built for scanning billions of rows to answer things like how many users did X last month. They do not serve application requests. They serve analysts, dashboards, and ML pipelines. If you are building a product backend, you need a different database. If you are building a data platform, you are in exactly the right place.",
+      cost:"These are not drop-in databases for a FastAPI backend. No connection pooling in the traditional sense, queries take seconds not milliseconds, and per-query compute costs add up fast on high-frequency requests. You cannot serve a web request directly from Snowflake without caching in front of it. These tools are for batch workloads and analytical queries — they sit downstream of your application database, not in place of it.",
+      rubric:"A columnar analytics store does not satisfy the Data Layer rubric at all — no migration files in the run_migrations() pattern, no per-request SELECT 1 health check, no per-user row isolation model. Your application needs a transactional database (SQLite, Postgres, Supabase) for its primary data layer. Use Snowflake, BigQuery, or Redshift for the analytics pipeline that reads from that store."
+    }
+  };
+
+  function decideDataLayer(a) {
+    var tiny   = a.users === 'lt10';
+    var small  = a.users === '10-100';
+    var medium = a.users === '100-1k';
+    var large  = a.users === '1k+';
+    var sh     = a.managed === 'selfhosted';
+    var multi  = a.scale === 'multi';
+    var rt     = a.realtime === 'yes';
+    var rel    = a.relational === 'yes';
+    var reads  = a.rw === 'reads';
+    var writes = a.rw === 'writes';
+
+    // JSON: ultra-light — tiny, selfhosted, reads, no relational, no realtime
+    if (tiny && !multi && sh && reads && !rel && !rt) return 'json';
+    // SQLite WAL: tiny, single server, selfhosted
+    if (tiny && !multi && sh) return 'sqlite';
+    // Turso: tiny/small, managed, no realtime
+    if ((tiny || small) && !sh && !rt) return 'turso';
+    // Firestore: realtime + managed + document
+    if (rt && !sh && !rel) return 'firestore';
+    // Supabase: realtime + relational + managed + not large
+    if (rt && !sh && rel && !large) return 'supabase';
+    // PlanetScale: large + managed + relational
+    if (large && !sh && rel) return 'planetscale';
+    // PlanetScale: medium + distributed + managed + relational
+    if (medium && multi && !sh && rel) return 'planetscale';
+    // Analytics: large + reads + managed + no relational + no realtime
+    if (large && reads && !sh && !rel && !rt) return 'analytics';
+    // Redis: reads + no relational + no realtime + not large (caching pattern)
+    if (reads && !rel && !rt && !large) return 'redis';
+    // MongoDB: no relational + managed
+    if (!rel && !sh) return 'mongodb';
+    // MongoDB: no relational + selfhosted + medium/large
+    if (!rel && sh && (medium || large)) return 'mongodb';
+    // MySQL/MariaDB: selfhosted + relational + medium or large + write-heavy
+    if (sh && rel && (medium || large) && writes) return 'mysql';
+    // Neon: managed + relational + no realtime + small or medium
+    if (!sh && rel && !rt && (small || medium)) return 'neon';
+    // PostgreSQL: selfhosted + relational
+    if (sh && rel) return 'postgres';
+    // Supabase: managed + relational default
+    if (!sh && rel) return 'supabase';
+    if (tiny && rt && rel) return 'supabase';
+    return 'postgres';
+  }
+
+  var _dmState = {step:0, answers:{}};
+
+  function dmRender() {
+    var body = document.getElementById('dm-body');
+    if (!body) return;
+    _dmState.step >= DM_QUESTIONS.length ? dmShowResult(body) : dmShowQuestion(body, _dmState.step);
+  }
+
+  function dmEsc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function dmShowQuestion(body, idx) {
+    var q = DM_QUESTIONS[idx], total = DM_QUESTIONS.length, pips = '';
+    for (var i=0;i<total;i++) pips += '<div class="dm-pip'+(i<idx?' done':i===idx?' active':'')+'"></div>';
+    var opts = q.opts.map(function(o,i){
+      var sel = _dmState.answers[q.key]===o.val?' selected':'';
+      return '<div class="dm-opt'+sel+'" onclick="dmSelect('+idx+','+i+')">'
+        +'<div class="dm-opt-key">'+String.fromCharCode(65+i)+'</div>'
+        +'<div><strong>'+dmEsc(o.label)+'</strong><br><span style="font-size:12px;opacity:.65">'+dmEsc(o.desc)+'</span></div></div>';
+    }).join('');
+    body.innerHTML = '<div class="dm-progress-row">'+pips+'<span style="font-size:11px;opacity:.5;margin-left:4px">'+(idx+1)+' / '+total+'</span></div>'
+      +'<div class="dm-step"><div class="dm-step-label">Question '+(idx+1)+' of '+total+'</div>'
+      +'<div class="dm-step-q">'+dmEsc(q.q)+'</div><div class="dm-opts">'+opts+'</div></div>'
+      +'<div class="dm-nav-row"><button class="dm-back-btn" onclick="dmBack()"'+(idx===0?' disabled':'')+'>← Back</button>'
+      +'<button class="dm-next-btn" id="dm-next" onclick="dmNext()"'+(!_dmState.answers[q.key]?' disabled':'')+'>Next →</button></div>';
+  }
+
+  function dmShowResult(body) {
+    var key = decideDataLayer(_dmState.answers), r = DM_RESULTS[key];
+    var summary = DM_QUESTIONS.map(function(q){
+      var opt = q.opts.filter(function(o){return o.val===_dmState.answers[q.key];})[0];
+      return '<span class="dm-badge" style="background:var(--yellow-light)">'+dmEsc(q.key)+': '+dmEsc(opt?opt.label:'—')+'</span>';
+    }).join('');
+    body.innerHTML = '<div class="dm-badge-row">'+summary+'</div>'
+      +'<div class="dm-result-card"><div class="dm-result-hdr" style="background:'+r.color+'">'
+      +'<div style="font-size:40px;flex-shrink:0">'+r.emoji+'</div>'
+      +'<div><div class="dm-result-db">'+dmEsc(r.name)+'</div><div class="dm-result-tag">'+dmEsc(r.badge)+'</div></div></div>'
+      +'<div class="dm-result-body"><div><div class="dm-section-hdr">👑 Dionne says: why this fits your workload</div>'
+      +'<div class="dm-why-text">"'+dmEsc(r.why)+'"</div></div>'
+      +'<div class="dm-cost-box"><div class="dm-section-hdr">⚠️ What this costs you</div>'
+      +'<div class="dm-cost-text">'+dmEsc(r.cost)+'</div></div>'
+      +'<div class="dm-rubric-box"><div class="dm-section-hdr">📊 Rubric impact — Data Layer score</div>'
+      +'<div class="dm-rubric-text">'+dmEsc(r.rubric)+'</div></div></div></div>'
+      +'<div class="dm-nav-row" style="margin-top:20px"><button class="dm-back-btn" onclick="dmBack()">← Back</button>'
+      +'<button class="dm-restart-btn" onclick="dmRestart()">Start Over</button></div>';
+  }
+
+  window.dmSelect = function(qIdx, optIdx) {
+    var q = DM_QUESTIONS[qIdx];
+    _dmState.answers[q.key] = q.opts[optIdx].val;
+    document.querySelectorAll('#dm-body .dm-opt').forEach(function(el){el.classList.remove('selected');});
+    var opts = document.querySelectorAll('#dm-body .dm-opt');
+    if (opts[optIdx]) opts[optIdx].classList.add('selected');
+    var btn = document.getElementById('dm-next');
+    if (btn) btn.disabled = false;
+  };
+  window.dmNext = function() {
+    if (!_dmState.answers[DM_QUESTIONS[_dmState.step].key]) return;
+    _dmState.step++; dmRender();
+  };
+  window.dmBack = function() { if (_dmState.step>0){_dmState.step--;dmRender();} };
+  window.dmRestart = function() { _dmState={step:0,answers:{}}; dmRender(); };
+  window.initMatrix = function() { _dmState={step:0,answers:{}}; dmRender(); };
+
+  var _origGo = window.go;
+  window.go = function(id) {
+    _origGo && _origGo(id);
+    if (id==='tool-data-matrix') setTimeout(function(){window.initMatrix&&window.initMatrix();},30);
+  };
+})();
 
 function copyDeployCmd(){
   const el=document.getElementById('deploy-cmd');
