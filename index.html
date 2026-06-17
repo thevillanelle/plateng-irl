@@ -1893,7 +1893,7 @@ function render() {
   document.querySelectorAll('.screen-panel').forEach(p => p.classList.remove('active'));
   const panel = document.getElementById('panel-' + s.id);
   if (panel) { panel.classList.add('active'); panel.closest('.screen').scrollTop = 0; }
-  if (s.id && s.id.indexOf('mod')===0 && typeof renderModule==='function') renderModule(s.id);
+  if (s.id && typeof renderModule==='function' && COURSE[s.id]) renderModule(s.id);
   if (s.id==='overview'){ if(typeof renderHomeProgress==='function')renderHomeProgress(); if(typeof renderHomePhases==='function')renderHomePhases(); }
   if (s.id==='dashboard' && typeof renderDashProgress==='function') renderDashProgress();
   // Update topbar
