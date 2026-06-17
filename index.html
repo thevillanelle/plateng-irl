@@ -960,9 +960,9 @@ body{
       <div class="nav-group-label">Foundation &amp; Tools</div>
       <div class="nav-item" onclick="go('mod0')"><span>🖥️</span>0 · Dev Environment<span class="nav-badge">—</span></div>
       <div class="nav-item" onclick="go('mod1')"><span>💬</span>1 · Language Stack<span class="nav-badge">—</span></div>
-      <div class="nav-item" onclick="go('elective_github')"><span>🐙</span>GitHub for Teams<span class="nav-badge">—</span></div>
-      <div class="nav-item" onclick="go('elective_pr')"><span>📝</span>PR Hygiene<span class="nav-badge">—</span></div>
-      <div class="nav-item" onclick="go('elective_devworkflow')"><span>🔁</span>Dev Workflow<span class="nav-badge">—</span></div>
+      <div class="nav-item" onclick="go('elective_github')"><span>🐙</span>E1 · GitHub for Teams<span class="nav-badge">—</span></div>
+      <div class="nav-item" onclick="go('elective_pr')"><span>📝</span>E2 · PR Hygiene<span class="nav-badge">—</span></div>
+      <div class="nav-item" onclick="go('elective_devworkflow')"><span>🔁</span>E3 · Dev Workflow<span class="nav-badge">—</span></div>
       <div class="nav-group-label">Build</div>
       <div class="nav-item" onclick="go('mod2')"><span>🏗️</span>2 · Systems Design<span class="nav-badge">—</span></div>
       <div class="nav-item" onclick="go('mod3')"><span>🗃️</span>3 · Data Layer<span class="nav-badge">—</span></div>
@@ -972,20 +972,20 @@ body{
       <div class="nav-item" onclick="go('mod6')"><span>🔐</span>6 · Security<span class="nav-badge">—</span></div>
       <div class="nav-item" onclick="go('mod7')"><span>🧪</span>7 · Testing<span class="nav-badge">—</span></div>
       <div class="nav-item" onclick="go('mod8')"><span>⚙️</span>8 · CI/CD<span class="nav-badge">—</span></div>
-      <div class="nav-item" onclick="go('elective_deploy')"><span>🚀</span>Deployment<span class="nav-badge">—</span></div>
+      <div class="nav-item" onclick="go('elective_deploy')"><span>🚀</span>E4 · Deployment<span class="nav-badge">—</span></div>
       <div class="nav-group-label">Operate</div>
       <div class="nav-item" onclick="go('mod9')"><span>📡</span>9 · Observability<span class="nav-badge">—</span></div>
       <div class="nav-item" onclick="go('mod10')"><span>🚨</span>10 · Production Ops<span class="nav-badge">—</span></div>
-      <div class="nav-item" onclick="go('elective_multiproject')"><span>🗂️</span>Multiple Projects<span class="nav-badge">—</span></div>
+      <div class="nav-item" onclick="go('elective_multiproject')"><span>🗂️</span>E5 · Multiple Projects<span class="nav-badge">—</span></div>
       <div class="nav-item" onclick="go('mod11')"><span>📋</span>11 · Platform Standards<span class="nav-badge">—</span></div>
-      <div class="nav-item" onclick="go('elective_mcp')"><span>🤖</span>MCP &amp; Claude Skills<span class="nav-badge">—</span></div>
+      <div class="nav-item" onclick="go('elective_mcp')"><span>🤖</span>E6 · MCP &amp; Claude Skills<span class="nav-badge">—</span></div>
       <div class="nav-group-label">Electives</div>
-      <div class="nav-item" onclick="go('next_otel')"><span>📡</span>OTel in Python<span class="nav-badge">★</span></div>
-      <div class="nav-item" onclick="go('next_sql')"><span>🗃️</span>SQL Beyond Basics<span class="nav-badge">★</span></div>
-      <div class="nav-item" onclick="go('next_async')"><span>⚡</span>Python Async<span class="nav-badge">★</span></div>
-      <div class="nav-item" onclick="go('next_k8s')"><span>☸️</span>Kubernetes Basics<span class="nav-badge">★</span></div>
-      <div class="nav-item" onclick="go('next_athena')"><span>📊</span>The Data Stack<span class="nav-badge">★</span></div>
-      <div class="nav-item" onclick="go('next_innersource')"><span>🏆</span>InnerSource Your Repo<span class="nav-badge">★</span></div>
+      <div class="nav-item" onclick="go('next_otel')"><span>📡</span>E7 · OTel in Python<span class="nav-badge">★</span></div>
+      <div class="nav-item" onclick="go('next_sql')"><span>🗃️</span>E8 · SQL Beyond Basics<span class="nav-badge">★</span></div>
+      <div class="nav-item" onclick="go('next_async')"><span>⚡</span>E9 · Python Async<span class="nav-badge">★</span></div>
+      <div class="nav-item" onclick="go('next_k8s')"><span>☸️</span>E10 · Kubernetes Basics<span class="nav-badge">★</span></div>
+      <div class="nav-item" onclick="go('next_athena')"><span>📊</span>E11 · The Data Stack<span class="nav-badge">★</span></div>
+      <div class="nav-item" onclick="go('next_innersource')"><span>🏆</span>E12 · InnerSource Your Repo<span class="nav-badge">★</span></div>
       <div class="nav-group-label">Tools</div>
       <div class="nav-item" onclick="go('glossary')"><span>📖</span>Glossary</div>
       <div class="nav-item" onclick="go('rubric')"><span>💯</span>Report Card</div>
@@ -1453,11 +1453,10 @@ open ~/Desktop/grade-this-repo</pre><button class="copy-btn" onclick="copyText(t
       <div class="screen-panel" id="panel-elective_devworkflow">
         <div class="pad" style="background:var(--yellow-light)">
           <div class="module-hdr" style="background:var(--yellow)">
-            <div class="mod-num-badge" style="background:var(--yellow-light)">🔁</div>
+            <div class="mod-num-badge" style="background:var(--yellow-light)">E3</div>
             <div>
-              <div class="mod-hdr-label">Elective</div>
+              <div class="mod-hdr-label">E3 · Elective</div>
               <div class="mod-hdr-title">Developer Workflow</div>
-              <div class="mod-hdr-desc">The daily rhythm that keeps your code clean and your teammates sane.</div>
             </div>
           </div>
           <div class="lesson-host" data-mod="elective_devworkflow"></div>
@@ -1467,9 +1466,9 @@ open ~/Desktop/grade-this-repo</pre><button class="copy-btn" onclick="copyText(t
       <div class="screen-panel" id="panel-elective_multiproject">
         <div class="pad" style="background:#F4F0FF">
           <div class="module-hdr" style="background:#C9B3FF">
-            <div class="mod-num-badge" style="background:#F4F0FF">🗂️</div>
+            <div class="mod-num-badge" style="background:#F4F0FF">E5</div>
             <div>
-              <div class="mod-hdr-label">Elective</div>
+              <div class="mod-hdr-label">E5 · Elective</div>
               <div class="mod-hdr-title">Managing Multiple Projects</div>
               <div class="mod-hdr-desc">For engineers running multiple production systems across different teams.</div>
             </div>
@@ -1688,9 +1687,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-elective_deploy">
         <div class="pad" style="background:var(--mint-light)">
           <div class="module-hdr" style="background:var(--mint)">
-            <div class="mod-num-badge" style="background:var(--mint-light)">🚀</div>
+            <div class="mod-num-badge" style="background:var(--mint)">E4</div>
             <div>
-              <div class="mod-hdr-label">Elective</div>
+              <div class="mod-hdr-label">E4 · Elective</div>
               <div class="mod-hdr-title">Deployment</div>
               <div class="mod-hdr-desc">Fly.io, Render.com, GitHub Pages, InnerSource.</div>
             </div>
@@ -1702,9 +1701,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-elective_mcp">
         <div class="pad" style="background:var(--lavender-light)">
           <div class="module-hdr" style="background:var(--lavender)">
-            <div class="mod-num-badge" style="background:var(--lavender-light)">🤖</div>
+            <div class="mod-num-badge" style="background:var(--lavender-light)">E6</div>
             <div>
-              <div class="mod-hdr-label">Elective</div>
+              <div class="mod-hdr-label">E6 · Elective</div>
               <div class="mod-hdr-title">MCP, Cron &amp; Claude Skills</div>
               <div class="mod-hdr-desc">Build and deploy AI tools on your infrastructure.</div>
             </div>
@@ -1716,9 +1715,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-elective_pr">
         <div class="pad" style="background:#F4F0FF">
           <div class="module-hdr" style="background:#C9B3FF">
-            <div class="mod-num-badge" style="background:#F4F0FF">📝</div>
+            <div class="mod-num-badge" style="background:#F4F0FF">E2</div>
             <div>
-              <div class="mod-hdr-label">Elective</div>
+              <div class="mod-hdr-label">E2 · Elective</div>
               <div class="mod-hdr-title">PR Hygiene &amp; Change Management</div>
               <div class="mod-hdr-desc">For everyone who touches a shared repo.</div>
             </div>
@@ -1730,9 +1729,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-elective_github">
         <div class="pad" style="background:#EEF4FF">
           <div class="module-hdr" style="background:#7AAAE8">
-            <div class="mod-num-badge" style="background:#EEF4FF">🐙</div>
+            <div class="mod-num-badge" style="background:#EEF4FF">E1</div>
             <div>
-              <div class="mod-hdr-label">Elective</div>
+              <div class="mod-hdr-label">E1 · Elective</div>
               <div class="mod-hdr-title">GitHub for Teams</div>
               <div class="mod-hdr-desc">Set up your team's GitHub org, protect your branches, manage your people.</div>
             </div>
@@ -1745,9 +1744,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-next_otel">
         <div class="pad" style="background:#EEF4FF">
           <div class="module-hdr" style="background:#7AAAE8">
-            <div class="mod-num-badge" style="background:#EEF4FF">📡</div>
+            <div class="mod-num-badge" style="background:#EEF4FF">E7</div>
             <div>
-              <div class="mod-hdr-label">What&rsquo;s Next</div>
+              <div class="mod-hdr-label">E7 · What&rsquo;s Next</div>
               <div class="mod-hdr-title">OpenTelemetry in Python</div>
               <div class="mod-hdr-desc">Instrument the Hub. See what it&rsquo;s actually doing.</div>
             </div>
@@ -1759,9 +1758,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-next_sql">
         <div class="pad" style="background:var(--mint-light)">
           <div class="module-hdr" style="background:var(--mint)">
-            <div class="mod-num-badge" style="background:var(--mint-light)">🗃️</div>
+            <div class="mod-num-badge" style="background:var(--mint-light)">E8</div>
             <div>
-              <div class="mod-hdr-label">What&rsquo;s Next</div>
+              <div class="mod-hdr-label">E8 · What&rsquo;s Next</div>
               <div class="mod-hdr-title">SQL Beyond Basics</div>
               <div class="mod-hdr-desc">Window functions, CTEs, and reading the query plan.</div>
             </div>
@@ -1773,9 +1772,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-next_async">
         <div class="pad" style="background:var(--pink-light)">
           <div class="module-hdr" style="background:var(--pink)">
-            <div class="mod-num-badge" style="background:var(--pink-light)">⚡</div>
+            <div class="mod-num-badge" style="background:var(--pink-light)">E9</div>
             <div>
-              <div class="mod-hdr-label">What&rsquo;s Next</div>
+              <div class="mod-hdr-label">E9 · What&rsquo;s Next</div>
               <div class="mod-hdr-title">Python Async Deep Dive</div>
               <div class="mod-hdr-desc">FastAPI is async. Your SQLite calls aren&rsquo;t. Fix that.</div>
             </div>
@@ -1787,9 +1786,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-next_k8s">
         <div class="pad" style="background:#F4F0FF">
           <div class="module-hdr" style="background:#C9B3FF">
-            <div class="mod-num-badge" style="background:#F4F0FF">☸️</div>
+            <div class="mod-num-badge" style="background:#F4F0FF">E10</div>
             <div>
-              <div class="mod-hdr-label">What&rsquo;s Next</div>
+              <div class="mod-hdr-label">E10 · What&rsquo;s Next</div>
               <div class="mod-hdr-title">Kubernetes Fundamentals</div>
               <div class="mod-hdr-desc">Fly.io runs on K8s. Know what&rsquo;s underneath.</div>
             </div>
@@ -1801,9 +1800,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-next_athena">
         <div class="pad" style="background:var(--yellow-light)">
           <div class="module-hdr" style="background:var(--yellow-mid)">
-            <div class="mod-num-badge" style="background:var(--yellow-light)">📊</div>
+            <div class="mod-num-badge" style="background:var(--yellow-light)">E11</div>
             <div>
-              <div class="mod-hdr-label">What&rsquo;s Next</div>
+              <div class="mod-hdr-label">E11 · What&rsquo;s Next</div>
               <div class="mod-hdr-title">The Data Stack</div>
               <div class="mod-hdr-desc">You build tools for your team. Know what your company actually runs.</div>
             </div>
@@ -1815,9 +1814,9 @@ ELECTIVES: OTel in Python, SQL Beyond Basics, Python Async, Kubernetes Basics, T
       <div class="screen-panel" id="panel-next_innersource">
         <div class="pad" style="background:var(--mint-light)">
           <div class="module-hdr" style="background:var(--mint)">
-            <div class="mod-num-badge" style="background:var(--mint-light)">🏆</div>
+            <div class="mod-num-badge" style="background:var(--mint-light)">E12</div>
             <div>
-              <div class="mod-hdr-label">What&rsquo;s Next</div>
+              <div class="mod-hdr-label">E12 · What&rsquo;s Next</div>
               <div class="mod-hdr-title">InnerSource Your Best Repo</div>
               <div class="mod-hdr-desc">CONTRIBUTING.md as if a stranger found it tomorrow.</div>
             </div>
@@ -1857,19 +1856,18 @@ const SCREENS = [
   {id:'rubric', title:'Report Card', prog:100},
     {id:'tool-agent', title:'Tools · AI Study Agent', prog:100},
     {id:'tool-data-matrix', title:'Tools · Data Layer Matrix', prog:100},
-,
-  {id:'elective_devworkflow', title:'Elective · Developer Workflow', prog:100},
-  {id:'elective_multiproject', title:'Elective · Managing Multiple Projects', prog:100},
-  {id:'elective_deploy', title:'Elective · Deployment', prog:100},
-  {id:'elective_mcp', title:'Elective · MCP & Claude Skills', prog:100},
-  {id:'elective_pr', title:'Elective · PR Hygiene & Change Management', prog:100},
-  {id:'elective_github', title:'Elective · GitHub for Teams', prog:100},
-  {id:'next_otel', title:"What's Next · OpenTelemetry in Python", prog:100},
-  {id:'next_sql', title:"What's Next · SQL Beyond Basics", prog:100},
-  {id:'next_async', title:"What's Next · Python Async Deep Dive", prog:100},
-  {id:'next_k8s', title:"What's Next · Kubernetes Fundamentals", prog:100},
-  {id:'next_athena', title:"What's Next · The Data Stack", prog:100},
-  {id:'next_innersource', title:"What's Next · InnerSource Your Best Repo", prog:100}
+  {id:'elective_devworkflow', title:'E3 · Developer Workflow', prog:100},
+  {id:'elective_multiproject', title:'E5 · Managing Multiple Projects', prog:100},
+  {id:'elective_deploy', title:'E4 · Deployment', prog:100},
+  {id:'elective_mcp', title:'E6 · MCP & Claude Skills', prog:100},
+  {id:'elective_pr', title:'E2 · PR Hygiene & Change Management', prog:100},
+  {id:'elective_github', title:'E1 · GitHub for Teams', prog:100},
+  {id:'next_otel', title:"E7 · OpenTelemetry in Python", prog:100},
+  {id:'next_sql', title:"E8 · SQL Beyond Basics", prog:100},
+  {id:'next_async', title:"E9 · Python Async Deep Dive", prog:100},
+  {id:'next_k8s', title:"E10 · Kubernetes Fundamentals", prog:100},
+  {id:'next_athena', title:"E11 · The Data Stack", prog:100},
+  {id:'next_innersource', title:"E12 · InnerSource Your Best Repo", prog:100}
 ]
 
 let current = 0;
