@@ -2538,6 +2538,7 @@ function glossify(htmlStr){
       var re=new RegExp('\\b('+term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')\\b');
       if(re.test(seg)){
         seg=seg.replace(re,'<span class="gloss" data-term="'+term+'">$1</span>');
+        break;
       }
     }
     parts[i]=seg;
