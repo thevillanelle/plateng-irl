@@ -2532,16 +2532,31 @@ function glossify(htmlStr){
       continue;
     }
     if(inCode || !seg.trim()) continue;
-    // for each glossary key, wrap first occurrences (case-insensitive, word-bounded)
+    // Collect all non-overlapping matches from the original segment first,
+    // then replace by position — so generated <span> tags are never seen
+    // by subsequent key iterations (fixes 'span' key corrupting tag attributes)
+    var hits=[];
     for(var k=0;k<_glossKeys.length;k++){
       var term=_glossKeys[k];
-      var re=new RegExp('\\b('+term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')\\b');
-      if(re.test(seg)){
-        seg=seg.replace(re,'<span class="gloss" data-term="'+term+'">$1</span>');
-        break;
+      var re=new RegExp('('+term.replace(/[.*+?^${}()|[\]\]/g,'\$&')+')');
+      var m=re.exec(seg);
+      if(m){
+        var overlaps=false;
+        for(var j=0;j<hits.length;j++){
+          if(m.index<hits[j][1]&&m.index+m[0].length>hits[j][0]){overlaps=true;break;}
+        }
+        if(!overlaps) hits.push([m.index,m.index+m[0].length,term,m[0]]);
       }
     }
-    parts[i]=seg;
+    if(!hits.length) continue;
+    hits.sort(function(a,b){return a[0]-b[0];});
+    var out='',pos=0;
+    for(var j=0;j<hits.length;j++){
+      out+=seg.slice(pos,hits[j][0]);
+      out+='<span class="gloss" data-term="'+hits[j][2]+'">'+hits[j][3]+'</span>';
+      pos=hits[j][1];
+    }
+    parts[i]=out+seg.slice(pos);
   }
   return parts.join('');
 }
